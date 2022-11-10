@@ -34,6 +34,16 @@ CREATE TABLE IF NOT EXISTS "Vacations" (
 	"declarator"	STRING(12),
 	PRIMARY KEY("id")
 );
+INSERT INTO "Teams" VALUES (1,'The Rubix Cube',NULL,'mitkoviv, patr_spas, lia_sl, kolyov_mario','nikifor70');
+INSERT INTO "Teams" VALUES (2,'Chronicles of Java',NULL,'g_andrea, dragon, manush, e_vladimirov','nikita_l');
+INSERT INTO "Teams" VALUES (3,'The Code of Duty',NULL,'stoyu303, m_spasov, kar_rus_01, beldeva_doni','miro_boykov');
+INSERT INTO "Teams" VALUES (4,'The ERROR List',NULL,'yordanp, aanton, lukanov_stef, l_kochanov','b_violeta');
+INSERT INTO "Teams" VALUES (5,'PGTK',NULL,'hristov, bazadanni, vakovsky, albena-pav','v_vasileva');
+INSERT INTO "Teams" VALUES (6,'Decision Makers',NULL,'balkanski, tariiski_n, matthews, shopova42','viki_asenova');
+INSERT INTO "Teams" VALUES (7,'Terminate the Bug',NULL,'spiderman, nikoleta_f, momchill, kaloyan_grig','i_monvhev');
+INSERT INTO "Teams" VALUES (8,'Mighty Pythons',NULL,'vladnik, cherganski, kirilova_pol, patrikcho','bratovanov');
+INSERT INTO "Teams" VALUES (9,'Remote Coders',NULL,'simon33, maria_georg, karavelov, ivo_dimitrov','zdravkopekov');
+INSERT INTO "Teams" VALUES (10,'Byte the Bullet',NULL,'krasimira95, boichevaaa, stratiev, kris-kutin','petur_trikos');
 INSERT INTO "Users" VALUES (1,'yordanp','6&Wx33CVth','Yordan','Petrov','Developer',4);
 INSERT INTO "Users" VALUES (2,'mitkoviv','parola','Ivan','Mitkov','Developer',1);
 INSERT INTO "Users" VALUES (3,'nikita_l','7e*2F3ebXB','Nikola','Lubenov','Team Lead',2);
@@ -71,7 +81,7 @@ INSERT INTO "Users" VALUES (34,'e_vladimirov','yN239J%4I2','Emil','Vladimirov','
 INSERT INTO "Users" VALUES (35,'stratiev','balkanski_s.','Stanislav','Stratiev','Developer',10);
 INSERT INTO "Users" VALUES (36,'aanton','cars42781','Anton','Andreev','Unassigned',4);
 INSERT INTO "Users" VALUES (37,'nikoleta_f','burgasimore','Nikoleta','Foteva','Developer',7);
-INSERT INTO "Users" VALUES (38,'tutunev','9iH6*Wu5ib','Ekaterina','Dudin','Developer',5);
+INSERT INTO "Users" VALUES (38,'bazadanni','9iH6*Wu5ib','Ekaterina','Dudin','Developer',5);
 INSERT INTO "Users" VALUES (39,'bratovanov','dE7q2@96rc','Petko','Bratovanov','Team Lead',8);
 INSERT INTO "Users" VALUES (40,'beldeva_doni','nightdancing','Donika','Beldeva','Developer',3);
 INSERT INTO "Users" VALUES (41,'tariiski_n','Life_himiq4!','Nikola','Tariiski','Unassigned',6);
