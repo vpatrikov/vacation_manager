@@ -34,3 +34,30 @@ function deleteAtId(id) {
 		console.log(`Successfuly deleted at ${id} from Users`);
 	});
 }
+function addUser() {
+	let fname = document.forms["register"]["fname"].value;
+	let lname = document.forms["register"]["lname"].value;
+	let nickname = document.forms["register"]["nickname"].value;
+	let password = document.forms["register"]["password"].value;
+	let passwordRep = document.forms["register"]["passwordRep"].value;
+	if (password == passwordRep) {
+		let sql = 'INSERT INTO Users (fname, lname, nickname, password) VALUES (?,?,?,?)';
+		db.run(sql, [fname, lname, nickname, password], (err) => {
+			if (err) {
+				throw err;
+			}
+			document.getElementById('isisnt').innerHTML = `Registration successful!`;
+		})
+	}
+}
+function logIn() {
+	let nickname = document.forms["login"]["nickname"].value;
+	let password = document.forms["login"]["password"].value;
+	let sql = 'SELECT * FROM Users WHERE nickname=? and password=?'
+	db.run(sql, [nickname, password], (err)=>{
+		if (err) {
+            throw err;
+        }
+		document.getElementById('isisnt').innerHTML = `Login successful!`;
+	})
+}

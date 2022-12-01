@@ -6,16 +6,44 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <script src="prj.js"></script>
     <title>Vacation Manager</title>
 </head>
 
 <body>
     <header>
-        <h1>Login</h1>
+        <h1>Register</h1>
     </header>
-    <form>
-        <button><a href="index.html">Back to Home</a></button>
-    </form>
+
+    <input type="radio" id="reg" value="Registration">
+    <div id="regist">
+        <form name="register" onsubmit="addUser()">
+            <label for="fname">Име:</label>
+            <input type="text" id="fname" name="fname" maxlength="10"><br><br>
+            <label for="lname">Фамилия:</label>
+            <input type="text" id="lname" name="lname" maxlength="15"><br><br>
+            <label for="nickname">Username:</label>
+            <input type="text" id="nickname" name="nickname" maxlength="12"><br><br>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" maxlength="10"><br><br>
+            <label for="passwordRep">Repeat password:</label>
+            <input type="password" id="passwordRep" name="passwordRep" maxlength="10"><br><br>
+            <input type="submit" value="Submit">
+        </form>
+        <p id="isisnt" style="font-size:medium"></p>
+        
+    </div>
+    <input type="radio" value="LogIn">
+    <div id="login">
+        <form name="login" onsubmit="logIn()">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" maxlength="10"><br><br>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" maxlength="10"><br><br>
+            <input type="submit" value="Submit">
+        </form>
+    
+    <button><a href="index.html">Return to Home</a></button>
 
 </body>
 
