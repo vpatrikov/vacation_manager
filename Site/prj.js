@@ -7,13 +7,8 @@ let db = new sqlite3.Database('../Database.db', (err) => {
 	}
 	console.log('Conn Succesful!');
 });
-var fname = document.getElementById("fname").value;
-var lname = document.getElementById("lname").value;
-var nickname = document.getElementById("nickname").value;
-var password = document.getElementById("password").value;
-var passwordRep = document.getElementById("passwordRep").value;
-var username = document.getElementById("username").value;
-var pass = document.getElementById("pass").value;
+
+
 db.close();
 //console.log("VM started");
 function selectAllFromTeam(id) {
@@ -40,8 +35,12 @@ function deleteAtId(id) {
 		console.log(`Successfuly deleted at ${id} from Users`);
 	});
 }
-function addUser(fname, lname, nickname, password) {
-
+function addUser() {
+	let fname = document.getElementById("fname").value;
+	let lname = document.getElementById("lname").value;
+	let nickname = document.getElementById("nickname").value;
+	let password = document.getElementById("password").value;
+	let passwordRep = document.getElementById("passwordRep").value;
 	if (password == passwordRep) {
 		let sql = 'INSERT INTO Users (fname, lname, username, pass) VALUES (?,?,?,?)';
 		db.run(sql, [fname, lname, nickname, password], (err) => {
@@ -52,8 +51,9 @@ function addUser(fname, lname, nickname, password) {
 		document.getElementById('isisnt').innerHTML = "Registration successful!";
 	}
 }
-function logIn(username,pass) {
-
+function logIn() {
+	let username = document.getElementById("username").value;
+	let pass = document.getElementById("pass").value;
 	let sql = 'SELECT * FROM Users WHERE username=? and pass=?'
 	db.run(sql, [username, pass], (err) => {
 		if (err) {
