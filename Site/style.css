@@ -1,11 +1,13 @@
-header{
+header {
     text-align: center;
     width: auto;
-    background-color: darkslateblue;
+    background: rgb(97, 0, 255);
+    background: linear-gradient(90deg, rgba(97, 0, 255, 1) 0%, rgba(243, 0, 255, 1) 100%);
     color: aliceblue;
     padding: 2%;
 }
-a{
+
+a {
     color: aliceblue;
     text-decoration: none;
     border-width: 2px;
@@ -15,15 +17,17 @@ a{
     border-radius: 5px;
     padding: 0.5%;
 }
-button{
+
+button {
     background-color: darkslateblue;
     border-width: 2px;
     border-style: solid;
     border-color: aliceblue;
     border-radius: 5px;
+    color: aliceblue;
 }
 
-footer{
+footer {
     width: auto;
     background-color: darkslateblue;
     color: aliceblue;

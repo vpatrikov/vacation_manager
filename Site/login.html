@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    
+
     <title>Vacation Manager</title>
 </head>
 
@@ -15,7 +15,7 @@
         <h1>Register</h1>
     </header>
 
-    <input type="radio" id="reg" value="Registration">
+
     <div id="regist">
         <label for="fname">Име:</label>
         <input type="text" id="fname" name="fname" maxlength="10"><br><br>
@@ -27,10 +27,12 @@
         <input type="password" id="password" name="password" maxlength="10"><br><br>
         <label for="passwordRep">Repeat password:</label>
         <input type="password" id="passwordRep" name="passwordRep" maxlength="10"><br><br>
-        <button onclick="addUser()"><h4>Register!</h4></button>
+        <button onclick="addUser()">
+            <h4>Register!</h4>
+        </button>
         <p id="isisnt" style="font-size:medium">0</p>
     </div>
-    <input type="radio" value="LogIn">
+
     <div id="login">
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" maxlength="10"><br><br>
