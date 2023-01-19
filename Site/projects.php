@@ -21,7 +21,46 @@
             <a href="vacations.php">Vacations</a>
         </nav>
     </header>
-    
+    <?php
+
+    $pdo = new PDO('sqlite:../Database.db');
+
+    if (isset($_POST['viewbttn'])) {
+        printdata($pdo);
+    } else if (array_key_exists('editbttn', $_POST)) {
+        editdata();
+    }
+    function printdata($pdo)
+    {
+        $statement = $pdo->query("SELECT * FROM Projects");
+        $projects = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        echo "<br><table border = 1 width = 400 height = 500>";
+
+            echo "
+            <tr>
+            <td><b>ID<b></td>
+            <td><b>Name<b></td>
+            <td><b>Description<b></td>
+            <td><b>Teams<b></td>
+            </tr>";
+
+        foreach ($projects as $row => $data) {
+            echo "<tr>";
+            echo "<td>" . $data['id'] . "." . "</td>";
+            echo "<td>" . $data['name'] . "</td>";
+            echo "<td>" . $data['description'] . "</td>";
+            echo "<td>" . $data['teams'] . "</td>";
+            echo "</tr>";
+        }
+
+        echo "</table>";
+    }
+    function editdata()
+    {
+        echo "This is edit data that is selected";
+    }
+    ?>
     <form method="post">
         <div id="buttons">
             <br>

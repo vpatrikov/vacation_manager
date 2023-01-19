@@ -37,12 +37,34 @@ footer {
 #buttons {
     text-align: center;
 }
-body{
+
+body {
 
     margin: 0;
 }
 
-.print{
+.print {
     text-align: center;
-    list-style-type: none; 
+    list-style-type: none;
+}
+
+table {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.actionbttns {
+    background-color: darkslateblue;
+    border-width: 2px;
+    width: 110px;
+    height: 50px;
+    border-style: solid;
+    border-color: aliceblue;
+    border-radius: 5px;
+    color: aliceblue;
+}
+
+#login {
+    text-align: center;
 }
