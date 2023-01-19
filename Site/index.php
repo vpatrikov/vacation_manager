@@ -13,6 +13,7 @@
     <header>
         <h1>Vacation Manager</h1>
         <nav>
+            <a href="register.php">Register</a>
             <a href="login.php">Login</a>
             <a href="index.php">Home</a>
             <a href="teams.php">Teams</a>
