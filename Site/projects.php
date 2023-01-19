@@ -22,10 +22,13 @@
         </nav>
     </header>
     
-    <div id="buttons">
-    <button id="viewbttn">View Data</button>
-    <button id="viewbttn">Edit Data</button>
-    </div>
+    <form method="post">
+        <div id="buttons">
+            <br>
+            <input type="submit" name="viewbttn" value="View Data" />
+            <input type="submit" name="editbttn" value="Edit Data" />
+        </div>
+    </form>
 </body>
 
 </html>
