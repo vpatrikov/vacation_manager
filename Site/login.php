@@ -40,7 +40,7 @@
         <input type="password" id="pass" name="pass" maxlength="10"><br><br>
         <button onclick="logIn()">Log In</button>
     </div>
-    <button><a href="index.html">Return to Home</a></button>
+    <button><a href="index.php">Return to Home</a></button>
     <script src="prj.js"></script>
 </body>
 
