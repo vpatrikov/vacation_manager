@@ -27,3 +27,9 @@
 </body>
 
 </html>
+<?php
+    $pdo = new PDO ('sqlite:../Database.db');
+
+
+    
+?>
