@@ -21,6 +21,11 @@
             <a href="vacations.php">Vacations</a>
         </nav>
     </header>
+
+    <div id="buttons">
+    <button id="viewbttn">View Data</button>
+    <button id="viewbttn">Edit Data</button>
+    </div>
 </body>
 
 </html>

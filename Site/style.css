@@ -33,3 +33,16 @@ footer {
     color: aliceblue;
     padding: 2%;
 }
+
+#buttons {
+    text-align: center;
+}
+body{
+
+    margin: 0;
+}
+
+.print{
+    text-align: center;
+    list-style-type: none; 
+}
