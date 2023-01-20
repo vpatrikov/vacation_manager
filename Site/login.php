@@ -22,7 +22,7 @@
         <input type="password" id="pass" name="pass" maxlength="10"><br><br>
         <input class="actionbttns" type="submit" id="submit" value="Log in"><br><br>
 
-        <input onclick="location.href='index.php'" class="actionbttns" name="return" value="Home">
+        <input onclick="location.href='index.php'" type="submit" class="actionbttns" name="return" value="Home">
     </div>
     <script src="prj.js"></script>
 </body>

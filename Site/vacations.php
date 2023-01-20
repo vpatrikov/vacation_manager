@@ -23,10 +23,10 @@
     </header>
 
     <form method="post">
-        <div id="buttons">
+        <div class="buttons">
             <br>
-            <input type="submit" name="viewbttn" value="View Data" />
-            <input type="submit" name="editbttn" value="Edit Data" />
+            <input class="actionbttns" type="submit" name="viewbttn" value="View Data" />
+            <input class="actionbttns" type="submit" name="editbttn" value="Edit Data" />
         </div>
     </form>
 </body>
