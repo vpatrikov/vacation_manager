@@ -58,7 +58,7 @@
     }
     function editdata()
     {
-        echo "This is edit data that is selected";
+        header("Location:   projects_add.php");
     }
     ?>
     <form method="post">
