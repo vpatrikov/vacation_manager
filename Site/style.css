@@ -34,7 +34,7 @@ footer {
     padding: 2%;
 }
 
-#buttons {
+.buttons {
     text-align: center;
 }
 
@@ -63,8 +63,12 @@ table {
     border-color: aliceblue;
     border-radius: 5px;
     color: aliceblue;
+    text-align: center;
 }
 
 #login {
+    text-align: center;
+}
+#regist{
     text-align: center;
 }

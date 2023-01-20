@@ -12,21 +12,18 @@
         <h1>Register</h1>
     </header>
     <div id="regist">
-        <label for="fname">Име:</label>
+        <label for="fname">Име:</label><br>
         <input type="text" id="fname" name="fname" maxlength="10"><br><br>
-        <label for="lname">Фамилия:</label>
+        <label for="lname">Фамилия:</label><br>
         <input type="text" id="lname" name="lname" maxlength="15"><br><br>
-        <label for="nickname">Username:</label>
+        <label for="nickname">Username:</label><br>
         <input type="text" id="nickname" name="nickname" maxlength="12"><br><br>
-        <label for="password">Password:</label>
+        <label for="password">Password:</label><br>
         <input type="password" id="password" name="password" maxlength="10"><br><br>
-        <label for="passwordRep">Repeat password:</label>
+        <label for="passwordRep">Repeat password:</label><br>
         <input type="password" id="passwordRep" name="passwordRep" maxlength="10"><br><br>
-        <button>
-            <h4>Register!</h4>
-        </button>
-        <p id="isisnt" style="font-size:medium">0</p>
-        <button><a href="index.php">Return to Home</a></button>
+        <input class="actionbttns" type="submit" name="register" value="Register">
+        <input onclick="location.href='index.php'" class="actionbttns" name="return" value="Home">
     </div>
     
 </body>

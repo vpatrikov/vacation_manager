@@ -65,7 +65,7 @@
     ?>
 
     <form method="post">
-        <div id="buttons">
+        <div class="buttons">
             <br>
             <input class="actionbttns" type="submit" name="viewbttn" value="View Data" />
             <input class="actionbttns" type="submit" name="editbttn" value="Edit Data" />
