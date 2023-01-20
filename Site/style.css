@@ -92,3 +92,7 @@ table {
     border-style: double;
     border-color: blueviolet;
   }*/
+
+#msg{
+    text-align: center;
+}

@@ -11,7 +11,7 @@
 
 <body>
     <header>
-        <h1>Edit data for Projects</h1>
+        <h1>Edit data for teams</h1>
     </header>
     <?php
     if(!isset($_POST['submit'])){
@@ -20,10 +20,8 @@
         <div class="div_align">
             <label for="name">Name:</label><br>
             <input type="text" name="name" id="name" required><br>
-            <label for="description">Description:</label><br>
-            <input type="text" name="description" id="description" required><br>
-            <label for="team">Team:</label><br>
-            <input type="number" name="team" id="team" required><br><br>
+            <label for="team">Project:</label><br>
+            <input type="number" name="project" id="project" required><br><br>
             <input type="submit" class="actionbttns" name="submit" value="Add Data">
             <input type="submit" class="actionbttns" name="submit" value="Delete Data">
         </div>
@@ -33,21 +31,18 @@
     } else {
         try{
             $db = new PDO('sqlite:../Database.db');
-            $sql = "INSERT INTO Projects (id, name, description, teams) VALUES (NULL, :name, :description, :team)";
+            $sql = "INSERT INTO Teams (id, name, project) VALUES (NULL, :name, :project)";
             $stmt = $db->prepare($sql);
 
             $name = filter_input(INPUT_POST, 'name');
             $stmt->bindValue(':name', $name, PDO::PARAM_STR);
 
-            $description = filter_input(INPUT_POST, 'description');
-            $stmt->bindValue(':description', $description, PDO::PARAM_STR);
-
-            $team = filter_input(INPUT_POST, 'team');
-            $stmt->bindValue(':team', $team, PDO::PARAM_INT);
+            $project = filter_input(INPUT_POST, 'project');
+            $stmt->bindValue(':project', $project, PDO::PARAM_INT);
 
             $success = $stmt->execute();
             if($success){
-                echo "<p id='msg'>The project has been added to the database.</p>";
+                echo "<p id='msg'>The team has been added to the database.</p>";
             }else{
                 echo "There was an error."; 
             }

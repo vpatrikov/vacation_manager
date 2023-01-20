@@ -58,7 +58,7 @@
     }
     function editdata()
     {
-        header("Location:   projects_add.php");
+        header("Location: projects_add.php");
     }
     ?>
     <form method="post">

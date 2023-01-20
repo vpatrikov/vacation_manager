@@ -60,7 +60,7 @@
     }
     function editdata()
     {
-        echo "This is edit data that is selected";
+        header("Location: teams_add.php");
     }
     ?>
 
