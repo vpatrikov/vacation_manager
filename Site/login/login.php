@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
 
     <title>Vacation Manager</title>
 </head>
@@ -22,14 +22,13 @@
         <input type="password" id="pass" name="pass" maxlength="10"><br><br>
         <input class="actionbttns" type="submit" id="submit" value="Log in"><br><br>
 
-        <input onclick="location.href='index.php'" type="submit" class="actionbttns" name="return" value="Home">
+        <input onclick="location.href='../index.php'" type="submit" class="actionbttns" name="return" value="Home">
     </div>
-    <script src="prj.js"></script>
 </body>
 
 </html>
 <?php
-$pdo = new PDO('sqlite:../Database.db');
+$pdo = new PDO('sqlite:../../Database.db');
 
 
 

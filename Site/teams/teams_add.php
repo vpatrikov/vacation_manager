@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit projects data</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
 </head>
 
 <body>
@@ -30,7 +30,7 @@
     <?php
     } else {
         try{
-            $db = new PDO('sqlite:../Database.db');
+            $db = new PDO('sqlite:../../Database.db');
             $sql = "INSERT INTO Teams (id, name, project) VALUES (NULL, :name, :project)";
             $stmt = $db->prepare($sql);
 
@@ -48,6 +48,7 @@
             }
 
             $db = null;
+            
         } catch(PDOException $e){
             print "We had an error: " . $e->getMessage() . "<br/>";
             die();
@@ -56,8 +57,8 @@
         ?>
 
     <div class="footer">
-            <input onclick="location.href='index.php'" class="actionbttns" value="Return to Home">
-            <input onclick="location.href='projects.php'" class="actionbttns" value="Return to Projects page">
+            <input onclick="location.href='../index.php'" class="actionbttns" value="Return to Home">
+            <input onclick="location.href='teams.php'" class="actionbttns" value="Return to Teams page">
         </div>
 </body>
 

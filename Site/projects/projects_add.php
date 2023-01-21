@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit projects data</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
 </head>
 
 <body>
@@ -32,7 +32,7 @@
     <?php
     } else {
         try{
-            $db = new PDO('sqlite:../Database.db');
+            $db = new PDO('sqlite:../../Database.db');
             $sql = "INSERT INTO Projects (id, name, description, teams) VALUES (NULL, :name, :description, :team)";
             $stmt = $db->prepare($sql);
 
@@ -61,7 +61,7 @@
         ?>
 
     <div class="footer">
-            <input onclick="location.href='index.php'" class="actionbttns" value="Return to Home">
+            <input onclick="location.href='../index.php'" class="actionbttns" value="Return to Home">
             <input onclick="location.href='projects.php'" class="actionbttns" value="Return to Projects page">
         </div>
 </body>

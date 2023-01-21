@@ -13,12 +13,12 @@
     <header>
         <h1>Vacation Manager</h1>
         <nav>
-            <a href="register.php">Register</a>
-            <a href="login.php">Login</a>
+            <a href="register/register.php">Register</a>
+            <a href="login/login.php">Login</a>
             <a href="index.php">Home</a>
-            <a href="teams.php">Teams</a>
-            <a href="projects.php">Projects</a>
-            <a href="vacations.php">Vacations</a>
+            <a href="teams/teams.php">Teams</a>
+            <a href="projects/projects.php">Projects</a>
+            <a href="vacations/vacations.php">Vacations</a>
         </nav>
     </header>
 </body>
