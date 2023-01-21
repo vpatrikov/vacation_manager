@@ -62,8 +62,8 @@
     ?>
 
     <div class="footer">
-        <input onclick="location.href='../index.php'" class="actionbttns" value="Return to Home">
-        <input onclick="location.href='projects.php'" class="actionbttns" value="Return to Projects">
+        <input onclick="location.href='../index.php'" class="actionbttns" value="Home">
+        <input onclick="location.href='projects.php'" class="actionbttns" value="Projects page">
     </div>
 </body>
 
