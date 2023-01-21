@@ -14,7 +14,7 @@
         <h1>Edit data for teams</h1>
     </header>
     <?php
-    if(!isset($_POST['submit'])){
+    if(!isset($_POST['add'])){
     ?>
     <form id=login action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
         <div class="div_align">
@@ -22,8 +22,9 @@
             <input type="text" name="name" id="name" required><br>
             <label for="team">Project:</label><br>
             <input type="number" name="project" id="project" required><br><br>
-            <input type="submit" class="actionbttns" name="submit" value="Add Data">
-            <input type="submit" class="actionbttns" name="submit" value="Delete Data">
+            <input type="submit" class="actionbttns" name="add" value="Add Data">
+            <input onclick="location.href='teams_delete.php'" class="actionbttns" name="delete" value="Delete Data">
+            <input onclick="location.href='teams_update.php'" class="actionbttns" name="edit" value="Edit Data">
         </div>
     </form>
 

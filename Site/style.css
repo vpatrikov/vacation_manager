@@ -57,6 +57,7 @@ table {
     border-radius: 5px;
     color: aliceblue;
     text-align: center;
+    box-sizing: border-box;
 }
 
 #login {
