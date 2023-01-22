@@ -12,57 +12,84 @@
 <body>
     <header>
         <h1>Delete data in Projects</h1>
+        <h3>(select by what you want to delete the data)</h3>
     </header>
-
-    <div class="div_align">
-        <form method="get">
-            <label for="name">Delete by name.</label>
-            <input type="checkbox" name="name" id="name" onclick="visible('name', 'name_input')"><br>
-
-            <div class="checkbox_input" id="name_input">
-                <label for="name_input">Enter name:</label><br>
-                <input type="text" name="name_input">
-            </div>
-
-
-            <label for="description">Delete by description.</label>
-            <input type="checkbox" name="description" id="description" onclick="visible('description', 'des_input')"><br>
-            <div class="checkbox_input" id="des_input">
-                <label for="des_input">Enter description:</label><br>
-                <input type="text" name="des_input">
-            </div>
-
-
-            <label for="teams">Delete by team.</label>
-            <input type="checkbox" name="teams" id="teams" onclick="visible('teams', 'teams_input')">
-
-            <div class="checkbox_input" id="teams_input">
-                <label for="teams_input">Enter team:</label><br>
-                <input type="number" name="teams_input">
-            </div>
-
-            <br><br><br><br><br><br><br><br><br><input class="actionbttns" type="submit" name="submit" value="Submit">
-        </form>
-    </div>
     <?php
-    if (isset($_GET['submit'])) {
-        
-        @$var1 = $_GET['name'];
-        @$var2 = $_GET['description'];
-        @$var3 = $_GET['teams'];
 
-        if (isset($var1)) {
-            echo "Option 1 submitted successfully";
-        } else {
-            if (isset($var2)) {
-                echo "Option 2 submited successfully";
+    function dbquery($selection)
+    {
+        try {
+            $db = new PDO('sqlite:../../Database.db');
+            $sql = "DELETE FROM Projects WHERE $selection = :$selection ";
+            $stmt = $db->prepare($sql);
+
+            if ($selection == "name") {
+                $name = filter_input(INPUT_POST, 'name');
+
+                $success = $stmt->execute([':name' => $name]);
             } else {
-                if (isset($var3)) {
-                    echo "Option 2 submited successfully";
+                if ($selection == "description") {
+                    $teams = filter_input(INPUT_POST, 'description');
+
+                    $success = $stmt->execute([':description' => $teams]);
+                } else {
+                    if ($selection == "teams") {
+                        $teams = filter_input(INPUT_POST, 'teams');
+
+                        $success = $stmt->execute([':teams' => $teams]);
+                    }
+                }
+            }
+
+
+            if ($success) {
+                echo "<p id='msg'>The record has been deleted from the database.</p>";
+            } else {
+                echo "There was an error.";
+            }
+
+            $db = null;
+        } catch (PDOException $e) {
+            print "We had an error: " . $e->getMessage() . "<br/>";
+            die();
+        }
+    }
+
+    if (!isset($_POST['submit'])) {
+    ?>
+        <form id=login action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
+            <div>
+                <input type="checkbox" name="delbyname">
+                <label for="name">Name:</label><br>
+                <input type="text" name="name" id="name"><br>
+
+                <input type="checkbox" name="delbydes">
+                <label for="description">Description:</label><br>
+                <input type="text" name="description" id="description"><br>
+
+                <input type="checkbox" name="delbyteam">
+                <label for="teams">Team:</label><br>
+                <input type=number name="teams" id="teams"><br>
+            </div>
+
+            <br><input type="submit" class="actionbttns" name="submit" value="Delete Record">
+
+        </form>
+    <?php
+    } else {
+        if (isset($_POST['delbyname'])) {
+            dbquery('name');
+        } else {
+            if (isset($_POST['delbydes'])) {
+                dbquery('description');
+            } else {
+                if (isset($_POST['delbyteam'])) {
+                    dbquery('teams');
                 }
             }
         }
     }
+
     ?>
     <div class="footer">
         <input onclick="location.href='../index.php'" class="actionbttns" value="Home">
@@ -70,6 +97,5 @@
     </div>
 </body>
 
-<script src="../script.js"></script>
 
 </html>

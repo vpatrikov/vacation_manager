@@ -90,10 +90,3 @@ table {
 #msg {
     text-align: center;
 }
-
-.checkbox_input {
-    display: none;
-    position: fixed;
-    top: 40%;
-    left: 45%;
-}

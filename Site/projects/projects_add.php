@@ -20,11 +20,15 @@
             <div class="div_align">
                 <label for="name">Name:</label><br>
                 <input type="text" name="name" id="name" required><br>
+
                 <label for="description">Description:</label><br>
                 <input type="text" name="description" id="description" required><br>
+
                 <label for="team">Team:</label><br>
                 <input type="number" name="team" id="team" required><br><br>
+
                 <input type="submit" class="actionbttns" name="add" value="Add Data">
+                
                 <input onclick="location.href='projects_delete.php' "class="actionbttns" name="delete" value="Delete Data">
                 <input onclick="location.href='projects_update.php'" class="actionbttns" name="edit" value="Edit Data">
             </div>
