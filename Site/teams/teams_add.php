@@ -12,6 +12,7 @@
 <body>
     <header>
         <h1>Edit data for teams</h1>
+        <p style="font-size: 20px;"><b>(add data)<b></p>
     </header>
     <?php
     if(!isset($_POST['add'])){
@@ -42,8 +43,13 @@
             $stmt->bindValue(':project', $project, PDO::PARAM_INT);
 
             $success = $stmt->execute();
-            if($success){
-                echo "<p id='msg'>The team has been added to the database.</p>";
+            if($success){ 
+            ?>
+                <div class="completed">
+                    <p id='msg'>The record has been added to the database.</p>
+                    <input onclick="location.href='teams_add.php'" class="actionbttns" value="Edit more data">
+                </div>
+            <?php
             }else{
                 echo "There was an error."; 
             }

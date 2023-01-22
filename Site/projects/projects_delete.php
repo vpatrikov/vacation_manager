@@ -43,11 +43,15 @@
 
 
             if ($success) {
-                echo "<p id='msg'>The record has been deleted from the database.</p>";
+    ?>
+                <div class="completed">
+                    <p id='msg'>The record has been deleted from the database.</p>
+                    <input onclick="location.href='projects_add.php'" class="actionbttns" value="Edit more data">
+                </div>
+        <?php
             } else {
                 echo "There was an error.";
             }
-
             $db = null;
         } catch (PDOException $e) {
             print "We had an error: " . $e->getMessage() . "<br/>";
@@ -56,7 +60,8 @@
     }
 
     if (!isset($_POST['submit'])) {
-    ?>
+        ?>
+
         <form id=login action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
             <div>
                 <input type="checkbox" name="delbyname">
