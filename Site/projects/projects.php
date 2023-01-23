@@ -35,7 +35,7 @@
         $statement = $pdo->query("SELECT * FROM Projects");
         $projects = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-        echo "<br><table border = 1 width = 400 height = 500>";
+        echo "<br><table border = 1>";
 
         echo "
             <tr>
