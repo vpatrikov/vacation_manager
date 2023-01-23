@@ -16,10 +16,8 @@
     </header>
 
     <div id="login">
-        <label for="username">Username:</label><br>
-        <input type="text" id="username" name="username" maxlength="10"><br><br>
-        <label for="pass">Password:</label><br>
-        <input type="password" id="pass" name="pass" maxlength="10"><br><br>
+        <input class="textboxes" type="text" id="username" name="username" placeholder="Enter Username" maxlength="10"><br><br>
+        <input class="textboxes" type="password" id="pass" name="pass" placeholder="Enter Password" maxlength="10"><br><br>
         <input class="actionbttns" type="submit" id="submit" value="Log in"><br><br>
 
         <input onclick="location.href='../index.php'" type="submit" class="actionbttns" name="return" value="Home">

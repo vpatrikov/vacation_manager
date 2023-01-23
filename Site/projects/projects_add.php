@@ -11,26 +11,20 @@
 
 <body>
     <header>
-        <h1>Edit data for Projects</h1>
+        <h1>Add data to Projects</h1>
     </header>
     <?php
     if (!isset($_POST['add'])) {
     ?>
         <form id=login action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
             <div class="div_align">
-                <label for="name">Name:</label><br>
-                <input type="text" name="name" id="name" required><br>
+                <input class="textboxes" type="text" name="name" id="name" placeholder="Enter Name"><br><br>
 
-                <label for="description">Description:</label><br>
-                <input type="text" name="description" id="description" required><br>
+                <input class="textboxes" type="text" name="description" id="description" placeholder="Enter Description"><br><br>
 
-                <label for="team">Team:</label><br>
-                <input type="number" name="team" id="team" required><br><br>
+                <input class="textboxes" type="number" name="team" id="team" placeholder="Enter Team"><br><br>
 
-                <input type="submit" class="actionbttns" name="add" value="Add Data">
-                
-                <input onclick="location.href='projects_delete.php' "class="actionbttns" name="delete" value="Delete Data">
-                <input onclick="location.href='projects_update.php'" class="actionbttns" name="edit" value="Edit Data">
+                <input class="actionbttns" type="submit" name="add" value="Add Data">
             </div>
         </form>
 
@@ -52,7 +46,7 @@
 
             $success = $stmt->execute();
             if ($success) {
-                echo "<p id='msg'>The project has been added to the database.</p>";
+                header("Location: projects.php");
             } else {
                 echo "There was an error.";
             }

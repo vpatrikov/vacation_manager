@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../style.css">
     <title>Vacation Manager</title>
+    <link rel="stylesheet" href="../style.css">
 </head>
 
 <body>
@@ -21,53 +21,54 @@
             <a href="../vacations/vacations.php">Vacations</a>
         </nav>
     </header>
-    <?php
 
-    $pdo = new PDO('sqlite:../../Database.db');
+    <div class="div_align">
+        <?php
+        if (!isset($_POST['addbttn'])) {
 
-    if (isset($_POST['viewbttn'])) {
-        printdata($pdo);
-    } else if (array_key_exists('editbttn', $_POST)) {
-        editdata();
-    }
-    function printdata($pdo)
-    {
-        $statement = $pdo->query("SELECT * FROM Projects");
-        $projects = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-        echo "<br><table border = 1>";
+            $pdo = new PDO('sqlite:../../Database.db');
 
-        echo "
+            $statement = $pdo->query("SELECT * FROM Projects");
+            $projects = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+            echo "<br><table border = 1>";
+
+            echo "
             <tr>
                 <td><b>ID<b></td>
                 <td><b>Name<b></td>
                 <td><b>Description<b></td>
                 <td><b>Teams<b></td>
+                <td><b>Edit<b></td>
+                <td><b>Delete<b></td>
             </tr>";
 
-        foreach ($projects as $row => $data) {
-            echo "<tr>";
-            echo "<td>" . $data['id'] . "." . "</td>";
-            echo "<td>" . $data['name'] . "</td>";
-            echo "<td>" . $data['description'] . "</td>";
-            echo "<td>" . $data['teams'] . "</td>";
-            echo "</tr>";
-        }
+            foreach ($projects as $row => $data) {
+                echo "<tr>";
+                echo "<td>" . $data['id'] . "." . "</td>";
+                echo "<td>" . $data['name'] . "</td>";
+                echo "<td>" . $data['description'] . "</td>";
+                echo "<td>" . $data['teams'] . "</td>";
+                echo "<td align='center'>" ?> <a class='a_links' href="update.php?id=<?php echo $data['id']; ?>">Edit</a></td> <?php
+                echo "<td align='center'>" ?> <a class='a_links' href="projects_delete.php?id=<?php echo $data['id']; ?>">Delete</a></td>
+        <?php
+                echo "</tr>";
+            }
 
-        echo "</table>";
-    }
-    function editdata()
-    {
-        header("Location: projects_add.php");
-    }
-    ?>
-    <form method="post">
-        <div class="buttons">
-            <br>
-            <input class="actionbttns" type="submit" name="viewbttn" value="View Data">
-            <input class="actionbttns" type="submit" name="editbttn" value="Edit Data">
-        </div>
-    </form>
+            echo "</table>";
+        } else {
+            header("Location: projects_add.php");
+        }
+        ?>
+
+        <form method="post">
+            <div class="buttons">
+                <br>
+                <input class="actionbttns" type="submit" name="addbttn" value="Add Data">
+            </div>
+        </form>
+    </div>
 </body>
 
 </html>

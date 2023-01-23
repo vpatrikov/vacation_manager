@@ -24,7 +24,7 @@ button {
     border-style: solid;
     border-color: aliceblue;
     border-radius: 5px;
-    color: aliceblue;
+    color: aliceblue
 }
 
 .buttons {
@@ -92,22 +92,49 @@ table {
     text-align: center;
 }
 
-.completed{
+.completed {
     padding: 80px 0;
     text-align: center;
 }
 
-.update_inp{
-box-sizing: border-box;
-z-index: 2;
+.update_inp {
+    box-sizing: border-box;
+    z-index: 2;
 }
 
-.table{
+.table {
     z-index: 1;
 }
 
-.update_submit{
-    position:relative;
+.update_submit {
+    position: relative;
     left: 50%;
-    transform:translateX(-50%);
+    transform: translateX(-50%);
+}
+
+.a_links {
+    color: initial;
+    text-decoration: initial;
+    border-width: initial;
+    border-style: initial;
+    border-color: initial;
+    margin: initial;
+    border-radius: initial;
+    padding: initial;
+}
+
+.a_links:hover {
+    color: darkslateblue;
+    text-decoration: underline;
+    font-weight: none;
+}
+
+.textboxes {
+    width: 200px;
+    border-radius: 2px;
+    border: 1px solid #CCC;
+    padding: 10px;
+    color: #333;
+    font-size: 14px;
+    margin-top: 10px;
 }
