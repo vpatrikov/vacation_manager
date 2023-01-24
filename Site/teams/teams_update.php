@@ -11,9 +11,12 @@
 </head>
 
 <body>
-    <header>
-        <h1>Update data in Teams</h1>
-    </header>
+    <?php
+        $pdo = new PDO("sqlite:../../Database.db");
+
+        $id = $_REQUEST['id'];
+        echo "<header><h1>Edit data for record № " . $id . "</h1></header>"
+        ?>
 
     <footer>
         <input onclick="location.href='../index.php'" class="actionbttns" value="Home">
