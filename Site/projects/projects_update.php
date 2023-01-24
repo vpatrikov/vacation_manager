@@ -14,5 +14,10 @@
         $id = $_REQUEST['id'];
         echo "<header><h1>Edit data for record № " . $id . "</h1></header>"
         ?>
+
+    <div class="footer">
+        <input onclick="location.href='../index.php'" class="actionbttns" value="Home">
+        <input onclick="location.href='projects.php'" class="actionbttns" value="Projects page">
+    </div>
 </body>
 </html>

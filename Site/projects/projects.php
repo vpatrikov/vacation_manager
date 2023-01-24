@@ -50,7 +50,7 @@
                 echo "<td>" . $data['name'] . "</td>";
                 echo "<td>" . $data['description'] . "</td>";
                 echo "<td>" . $data['teams'] . "</td>";
-                echo "<td align='center'>" ?> <a class='a_links' href="update.php?id=<?php echo $data['id']; ?>">Edit</a></td> <?php
+                echo "<td align='center'>" ?> <a class='a_links' href="projects_update.php?id=<?php echo $data['id']; ?>">Edit</a></td> <?php
                 echo "<td align='center'>" ?> <a class='a_links' href="projects_delete.php?id=<?php echo $data['id']; ?>">Delete</a></td>
         <?php
                 echo "</tr>";
