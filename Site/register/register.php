@@ -12,15 +12,59 @@
     <header>
         <h1>Register</h1>
     </header>
-    <div id="regist">
-        <input class="textboxes" type="text" id="fname" name="fname" placeholder="Enter First Name" maxlength="10"><br><br>
-        <input class="textboxes" type="text" id="lname" name="lname" placeholder="Enter Last Name" maxlength="15"><br><br>
-        <input class="textboxes" type="text" id="username" name="username" placeholder="Enter Username" maxlength="12"><br><br>
-        <input class="textboxes" type="password" id="password" name="password" placeholder="Enter Password" maxlength="10"><br><br>
-        <input class="textboxes" type="password" id="passwordRep" name="passwordRep" placeholder="Repeat Password" maxlength="10"><br><br>
-        <input class="actionbttns" type="submit" name="register" value="Register"><br><br>
-        <input onclick="location.href='../index.php'" type="submit" class="actionbttns" name="return" value="Home">
-    </div>
+    <?php if (!isset($_POST['register'])) { ?>
+        <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
+            <div id="regist">
+                <input class="textboxes" type="text" id="fname" name="fname" placeholder="Enter First Name" maxlength="10"><br><br>
+                <input class="textboxes" type="text" id="lname" name="lname" placeholder="Enter Last Name" maxlength="15"><br><br>
+                <input class="textboxes" type="text" id="username" name="username" placeholder="Enter Username" maxlength="12"><br><br>
+                <input class="textboxes" type="password" id="password" name="password" placeholder="Enter Password" maxlength="10"><br><br>
+                <input class="textboxes" type="password" id="passwordRep" name="passwordRep" placeholder="Repeat Password" maxlength="10"><br><br>
+
+                <input class="actionbttns" type="submit" name="register" value="Register"><br><br>
+
+            </div>
+        </form>
+    <?php
+    } else {
+        try {
+            $db = new PDO('sqlite:../../Database.db');
+            $sql = "INSERT INTO Users (id, username, pass, fname, lname) VALUES (NULL, :username, :password, :fname, :lname)";
+            $stmt = $db->prepare($sql);
+
+            $username = filter_input(INPUT_POST, 'username');
+            $stmt->bindValue(':username', $username, PDO::PARAM_STR);
+
+            $password = filter_input(INPUT_POST, 'password');
+            $stmt->bindValue(':password', $password, PDO::PARAM_STR);
+
+            $fname = filter_input(INPUT_POST, 'fname');
+            $stmt->bindValue(':fname', $lname, PDO::PARAM_STR);
+
+            $lname = filter_input(INPUT_POST, 'lname');
+            $stmt->bindValue(':lname', $lname, PDO::PARAM_STR);            
+
+            $success = $stmt->execute();
+
+            if($success){ 
+                
+                header("Location: ../index.php");
+                }else{
+                    echo "There was an error."; 
+                }
     
+                $db = null;
+
+        } catch (PDOException $e) {
+            print "We had an error: " . $e->getMessage() . "<br/>";
+            die();
+        }
+    }
+    ?>
+    <div class="footer">
+    <input onclick="location.href='../index.php'" type="submit" class="actionbttns" name="return" value="Home">
+    </div>
+
 </body>
+
 </html>
