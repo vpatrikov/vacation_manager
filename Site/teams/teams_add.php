@@ -16,23 +16,23 @@
         <p style="font-size: 20px;"><b>(add data)<b></p>
     </header>
     <?php
-    if(!isset($_POST['add'])){
+    if (!isset($_POST['add'])) {
     ?>
-    <form id=login action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
-        <div class="div_align">
-            <label for="name">Name:</label><br>
-            <input type="text" name="name" id="name" required><br>
-            <label for="team">Project:</label><br>
-            <input type="number" name="project" id="project" required><br><br>
-            <input type="submit" class="actionbttns" name="add" value="Add Data">
-            <input onclick="location.href='teams_delete.php'" class="actionbttns" name="delete" value="Delete Data">
-            <input onclick="location.href='teams_update.php'" class="actionbttns" name="edit" value="Edit Data">
-        </div>
-    </form>
+        <form id=login action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
+            <div class="div_align">
+                <label for="name">Name:</label><br>
+                <input type="text" name="name" id="name" required><br>
+                <label for="team">Project:</label><br>
+                <input type="number" name="project" id="project" required><br><br>
+                <input type="submit" class="actionbttns" name="add" value="Add Data">
+                <input onclick="location.href='teams_delete.php'" class="actionbttns" name="delete" value="Delete Data">
+                <input onclick="location.href='teams_update.php'" class="actionbttns" name="edit" value="Edit Data">
+            </div>
+        </form>
 
-    <?php
+        <?php
     } else {
-        try{
+        try {
             $db = new PDO('sqlite:../../Database.db');
             $sql = "INSERT INTO Teams (id, name, project) VALUES (NULL, :name, :project)";
             $stmt = $db->prepare($sql);
@@ -44,30 +44,29 @@
             $stmt->bindValue(':project', $project, PDO::PARAM_INT);
 
             $success = $stmt->execute();
-            if($success){ 
-            ?>
+            if ($success) {
+        ?>
                 <div class="completed">
                     <p id='msg'>The record has been added to the database.</p>
                     <input onclick="location.href='teams_add.php'" class="actionbttns" value="Edit more data">
                 </div>
-            <?php
-            }else{
-                echo "There was an error."; 
+    <?php
+            } else {
+                echo "There was an error.";
             }
 
             $db = null;
-            
-        } catch(PDOException $e){
+        } catch (PDOException $e) {
             print "We had an error: " . $e->getMessage() . "<br/>";
             die();
         }
     }
-        ?>
+    ?>
 
-    <div class="footer">
-            <input onclick="location.href='../index.php'" class="actionbttns" value="Home">
-            <input onclick="location.href='teams.php'" class="actionbttns" value="Teams page">
-        </div>
+    <footer>
+        <input onclick="location.href='../index.php'" class="actionbttns" value="Home">
+        <input onclick="location.href='teams.php'" class="actionbttns" value="Teams page">
+    </footer>
 </body>
 
 </html>

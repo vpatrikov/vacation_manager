@@ -87,10 +87,10 @@
     }
 
     ?>
-    <div class="footer">
+    <footer>
         <input onclick="location.href='../index.php'" class="actionbttns" value="Home">
         <input onclick="location.href='teams.php'" class="actionbttns" value="Teams page">
-    </div>
+    </footer>
 </body>
 
 

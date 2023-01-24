@@ -76,7 +76,7 @@ table {
     padding: 10px;
 }
 
-.footer {
+footer {
     background: linear-gradient(90deg, rgba(97, 0, 255, 1) 0%, rgba(243, 0, 255, 1) 100%);
     position: fixed;
     left: 0;
