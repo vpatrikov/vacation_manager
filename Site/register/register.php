@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,6 +9,7 @@
     <link rel="icon" type="image/x-icon" href="../../favicon.ico">
     <title>Register</title>
 </head>
+
 <body>
     <header>
         <h1>Register</h1>
@@ -20,9 +22,7 @@
                 <input class="textboxes" type="text" id="username" name="username" placeholder="Enter Username" maxlength="12"><br><br>
                 <input class="textboxes" type="password" id="password" name="password" placeholder="Enter Password" maxlength="10"><br><br>
                 <input class="textboxes" type="password" id="passwordRep" name="passwordRep" placeholder="Repeat Password" maxlength="10"><br><br>
-
                 <input class="actionbttns" type="submit" name="register" value="Register"><br><br>
-
             </div>
         </form>
     <?php
@@ -42,28 +42,27 @@
             $stmt->bindValue(':fname', $lname, PDO::PARAM_STR);
 
             $lname = filter_input(INPUT_POST, 'lname');
-            $stmt->bindValue(':lname', $lname, PDO::PARAM_STR);            
+            $stmt->bindValue(':lname', $lname, PDO::PARAM_STR);
 
             $success = $stmt->execute();
 
-            if($success){ 
-                
-                header("Location: ../index.php");
-                }else{
-                    echo "There was an error."; 
-                }
-    
-                $db = null;
+            if ($success) {
 
+                header("Location: ../index.php");
+            } else {
+                echo "There was an error.";
+            }
+
+            $db = null;
         } catch (PDOException $e) {
             print "We had an error: " . $e->getMessage() . "<br/>";
             die();
         }
     }
     ?>
-    <div class="footer">
-    <input onclick="location.href='../index.php'" type="submit" class="actionbttns" name="return" value="Home">
-    </div>
+    <footer>
+        <input onclick="location.href='../index.php'" type="submit" class="actionbttns" name="return" value="Home">
+    </footer>
 
 </body>
 
