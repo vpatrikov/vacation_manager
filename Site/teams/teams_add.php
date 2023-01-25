@@ -12,21 +12,16 @@
 
 <body>
     <header>
-        <h1>Edit data for teams</h1>
-        <p style="font-size: 20px;"><b>(add data)<b></p>
+        <h1>Add data for teams</h1>
     </header>
     <?php
     if (!isset($_POST['add'])) {
     ?>
         <form id=login action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
             <div class="div_align">
-                <label for="name">Name:</label><br>
-                <input type="text" name="name" id="name" required><br>
-                <label for="team">Project:</label><br>
-                <input type="number" name="project" id="project" required><br><br>
+                <input class="textboxes" type="text" name="name" id="name" placeholder="Enter Name" required><br>
+                <input class="textboxes" type="number" name="project" id="project" placeholder="Enter Project" required><br><br>
                 <input type="submit" class="actionbttns" name="add" value="Add Data">
-                <input onclick="location.href='teams_delete.php'" class="actionbttns" name="delete" value="Delete Data">
-                <input onclick="location.href='teams_update.php'" class="actionbttns" name="edit" value="Edit Data">
             </div>
         </form>
 
@@ -45,12 +40,7 @@
 
             $success = $stmt->execute();
             if ($success) {
-        ?>
-                <div class="completed">
-                    <p id='msg'>The record has been added to the database.</p>
-                    <input onclick="location.href='teams_add.php'" class="actionbttns" value="Edit more data">
-                </div>
-    <?php
+                header("Location: teams.php");
             } else {
                 echo "There was an error.";
             }

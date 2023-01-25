@@ -23,55 +23,51 @@
         </nav>
     </header>
 
-    <?php
+    <div class="div_align">
+        <?php
+        if (!isset($_POST['addbttn'])) {
 
-    $pdo = new PDO('sqlite:../../Database.db');
 
-    if (isset($_POST['viewbttn'])) {
-        printdata($pdo);
-    } else if (array_key_exists('editbttn', $_POST)) {
-        editdata();
-    }
-    function printdata($pdo)
-    {
-        $statement = $pdo->query("SELECT * FROM Teams");
-        $teams = $statement->fetchAll(PDO::FETCH_ASSOC);
+            $pdo = new PDO('sqlite:../../Database.db');
 
-        echo "<br><table border = 1";
+            $statement = $pdo->query("SELECT * FROM Teams");
+            $teams = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-        echo "
+            echo "<br><table border = 1>";
+
+            echo "
             <tr>
                 <td><b>ID<b></td>
                 <td><b>Name<b></td>
                 <td><b>Project<b></td>
+                <td><b>Edit<b></td>
+                <td><b>Delete<b></td>
             </tr>";
 
-        foreach ($teams as $row => $data) {
-            echo "<tr>";
-            echo "<td>" . $data['id'] . "." . "</td>";
-            echo "<td>" . $data['name'] . "</td>";
-            echo "<td>" . $data['project'] . "</td>";
-            echo "</tr>";
+            foreach ($teams as $row => $data) {
+                echo "<tr>";
+                echo "<td>" . $data['id'] . "." . "</td>";
+                echo "<td>" . $data['name'] . "</td>";
+                echo "<td>" . $data['project'] . "</td>";
+                echo "<td align='center'>" ?> <a class='a_links' href="teams_update.php?id=<?php echo $data['id']; ?>">Edit</a></td> <?php
+                echo "<td align='center'>" ?> <a class='a_links' href="teams_delete.php?id=<?php echo $data['id']; ?>">Delete</a></td>
+        <?php
+                echo "</tr>";
+            }
 
-            # display table as list
-            # echo "<li class='print'>" . $team ['id'] . ". " . $team['name'] . "" . $team['project'] . "</li>";
+            echo "</table>";
+        } else {
+            header("Location: teams_add.php");
         }
+        ?>
 
-        echo "</table>";
-    }
-    function editdata()
-    {
-        header("Location: teams_add.php");
-    }
-    ?>
-
-    <form method="post">
-        <div class="buttons">
-            <br>
-            <input class="actionbttns" type="submit" name="viewbttn" value="View Data" />
-            <input class="actionbttns" type="submit" name="editbttn" value="Edit Data" />
-        </div>
-    </form>
+        <form method="post">
+            <div class="buttons">
+                <br>
+                <input class="actionbttns" type="submit" name="addbttn" value="Add Data">
+            </div>
+        </form>
+    </div>
 </body>
 
 </html>
