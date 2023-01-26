@@ -19,8 +19,8 @@
     ?>
         <form id=login action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
             <div class="div_align">
-                <input class="textboxes" type="text" name="name" id="name" placeholder="Enter Name" required><br>
-                <input class="textboxes" type="number" name="project" id="project" placeholder="Enter Project" required><br><br>
+                <input class="textboxes" type="text" name="name" id="name" placeholder="Enter Name"><br>
+                <input class="textboxes" type="number" name="project" id="project" placeholder="Enter Project"><br><br>
                 <input type="submit" class="actionbttns" name="add" value="Add Data">
             </div>
         </form>
