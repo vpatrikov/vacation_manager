@@ -28,7 +28,7 @@ include "check.php";
         </header>
         
         <!-- печата username, не знам как да му подам името на човека пробвах с $_SESSION['fname'] = $result[fname] (в login), но не печата нищо. -->
-        <p>Welcome, <?php echo $_SESSION['password'];?>!</p> 
+        <p>Welcome, <?php echo $_SESSION['username'];?>!</p> 
 
         <?php if (!isset($_POST['log_out'])) { ?>
             <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
