@@ -14,8 +14,6 @@
     <header>
         <h1>Users</h1>
         <nav>
-            <a href="../register/register.php">Register</a>
-            <a href="../login/login.php">Login</a>
             <a href="../index.php">Home</a>
             <a href="../teams/teams.php">Teams</a>
             <a href="../projects/projects.php">Projects</a>

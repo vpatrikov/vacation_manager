@@ -1,4 +1,3 @@
-<?php require("../check.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,7 +16,6 @@
         <h1>Login</h1>
     </header>
     <?php
-    session_start();
 
     function display_incorrect_pass(){
         ?>
@@ -28,15 +26,15 @@
                 <?php
     }
 
-    if (!isset($_POST['submit'])) { ?>
-
+    if (!isset($_POST['submit'])) {?>
         <form id="login" action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
             <input class="textboxes" type="text" id="username" name="username" placeholder="Enter Username" maxlength="10"><br><br>
             <input class="textboxes" type="password" id="pass" name="pass" placeholder="Enter Password" maxlength="10"><br><br>
             <input class="actionbttns" type="submit" name="submit" id="submit" value="Log in"><br><br>
-
-            <input onclick="location.href='../index.php'" type="submit" class="actionbttns" name="return" value="Home">
         </form>
+        <div id="login">
+        <input onclick="location.href='../index.php'" type="submit" class="actionbttns" name="return" value="Home">
+        </div>
     <?php
     } else {
         $db = new PDO('sqlite:../../Database.db');
@@ -52,7 +50,6 @@
             $_SESSION['logged_in'] = true;
             $_SESSION['username'] = $username;
             header("Location: ../index.php");
-            echo "Welcome, $username. You have been logged in as an administrator.";
         } else {
             $query = "SELECT * FROM users WHERE username = '$username'";
             $result = $db->query($query);
