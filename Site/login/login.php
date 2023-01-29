@@ -18,22 +18,33 @@
     </header>
     <?php
     session_start();
+
+    function display_incorrect_pass(){
+        ?>
+                <div class="div_align">
+                    <p style="font-size:25px">Incorrect username or password</p>
+                    <input onclick="location.href='../index.php'" class="actionbttns" type="submit" value="Home">
+                </div>
+                <?php
+    }
+
     if (!isset($_POST['submit'])) { ?>
-        <div id="login">
+
+        <form id="login" action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
             <input class="textboxes" type="text" id="username" name="username" placeholder="Enter Username" maxlength="10"><br><br>
             <input class="textboxes" type="password" id="pass" name="pass" placeholder="Enter Password" maxlength="10"><br><br>
-            <input class="actionbttns" type="submit" id="submit" value="Log in"><br><br>
+            <input class="actionbttns" type="submit" name="submit" id="submit" value="Log in"><br><br>
 
             <input onclick="location.href='../index.php'" type="submit" class="actionbttns" name="return" value="Home">
-        </div>
+        </form>
     <?php
     } else {
         $db = new PDO('sqlite:../../Database.db');
 
         $username = $_POST['username'];
-        $password = $_POST['password'];
+        $password = $_POST['pass'];
 
-        $query = "SELECT * FROM users WHERE username = '$username' AND password = '$password' AND role = 'CEO'";
+        $query = "SELECT * FROM users WHERE username = '$username' AND pass = '$password' AND role = 'CEO'";
         $result = $db->query($query);
         $user = $result->fetchAll();
 
@@ -42,14 +53,14 @@
             $_SESSION['username'] = $username;
             header("Location: ../index.php");
             echo "Welcome, $username. You have been logged in as an administrator.";
-        }else{
+        } else {
             $query = "SELECT * FROM users WHERE username = '$username'";
             $result = $db->query($query);
-            
-            if($result->fetchAll()){
-                echo "Incorrect password";
-            }else{
-                echo "Incorrect username or not an admin";
+
+            if ($result->fetchAll()) {
+                display_incorrect_pass();
+            } else {
+                display_incorrect_pass();
             }
         }
     }
