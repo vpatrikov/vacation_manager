@@ -43,7 +43,7 @@
         $username = $_POST['username'];
         $password = $_POST['pass'];
 
-        $query = "SELECT * FROM users WHERE username = '$username' AND pass = '$password' AND role = 'CEO'";
+        $query = "SELECT * FROM users WHERE username = '$username' AND pass = '$password'";
         $result = $db->query($query);
         $user = $result->fetchAll();
 

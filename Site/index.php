@@ -16,33 +16,63 @@ include "check.php";
 <body>
     <?php
     if (isset($_SESSION['logged_in'])) {
+        if (isset($_SESSION['role']) && $_SESSION['role'] == 'CEO') {
     ?>
-        <header>
-            <h1>Vacation Manager</h1>
-            <nav>
-                <a href="index.php">Home</a>
-                <a href="teams/teams.php">Teams</a>
-                <a href="projects/projects.php">Projects</a>
-                <a href="vacations/vacations.php">Vacations</a>
-            </nav>
-        </header>
-        
-        <!-- печата username, не знам как да му подам името на човека пробвах с $_SESSION['fname'] = $result[fname] (в login), но не печата нищо. -->
-        <p>Welcome, <?php echo $_SESSION['username'];?>!</p> 
+            <header>
+                <h1>Vacation Manager</h1>
+                <nav>
+                    <a href="index.php">Home</a>
+                    <a href="teams/teams.php">Teams</a>
+                    <a href="projects/projects.php">Projects</a>
+                    <a href="vacations/vacations.php">Vacations</a>
+                    <a href="users/users.php">Users</a>
+                </nav>
+            </header>
 
-        <?php if (!isset($_POST['log_out'])) { ?>
-            <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
-                <footer>
-                <input class="actionbttns" type="submit" name="log_out" value="Log Out">
-                </footer>
-            </form>
+            <p>Welcome, <?php echo $_SESSION['fname']; echo " " . $_SESSION['lname']; ?>! Role: <?php echo $_SESSION['role']; ?></p>
+
+            <?php if (!isset($_POST['log_out'])) { ?>
+                <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
+                    <footer>
+                        <input class="actionbttns" type="submit" name="log_out" value="Log Out">
+                    </footer>
+                </form>
+            <?php
+            } else {
+                session_destroy();
+                header("Location: login/login.php");
+            }
+            ?>
         <?php
         } else {
-            session_destroy();
-            header("Location: login/login.php");
-        }
+
         ?>
-    <?php
+            <header>
+                <h1>Vacation Manager</h1>
+                <nav>
+                    <a href="index.php">Home</a>
+                    <a href="teams/teams.php">Teams</a>
+                    <a href="projects/projects.php">Projects</a>
+                    <a href="vacations/vacations.php">Vacations</a>
+                </nav>
+            </header>
+
+            <p>Welcome, <?php echo $_SESSION['fname']; ?>! Role: <?php echo $_SESSION['role']; ?></p>
+
+            <?php if (!isset($_POST['log_out'])) { ?>
+                <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
+                    <footer>
+                        <input class="actionbttns" type="submit" name="log_out" value="Log Out">
+                    </footer>
+                </form>
+            <?php
+            } else {
+                session_destroy();
+                header("Location: login/login.php");
+            }
+            ?>
+        <?php
+        }
     } else { ?>
         <header>
             <h1>Vacation Manager</h1>
