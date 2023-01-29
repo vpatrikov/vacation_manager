@@ -1,3 +1,4 @@
+<?php include '../check.php';?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -47,8 +48,11 @@
             $success = $stmt->execute();
 
             if ($success) {
-
                 header("Location: ../index.php");
+                $_SESSION['logged_in'] = true;
+                $_SESSION['username'] = $username;
+                $_SESSION['firstname'] = $fname;
+
             } else {
                 echo "There was an error.";
             }
