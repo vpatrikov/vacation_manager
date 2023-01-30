@@ -14,12 +14,29 @@
     <header>
         
         <h1>Projects</h1>
+        <?php
+        session_start();
+        if ($_SESSION['role'] == 'CEO') {
+        ?>
         <nav>
             <a href="../index.php">Home</a>
             <a href="../teams/teams.php">Teams</a>
             <a href="../projects/projects.php">Projects</a>
             <a href="../vacations/vacations.php">Vacations</a>
+            <a href="../users/users.php">Users</a>
         </nav>
+        <?php
+        }else{
+            ?>
+            <nav>
+            <a href="../index.php">Home</a>
+            <a href="../teams/teams.php">Teams</a>
+            <a href="../projects/projects.php">Projects</a>
+            <a href="../vacations/vacations.php">Vacations</a>
+        </nav>
+        <?php
+        }
+        ?>
     </header>
 
     <div class="div_align scrollable">
