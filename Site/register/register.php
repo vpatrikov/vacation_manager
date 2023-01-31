@@ -18,11 +18,11 @@
     <?php if (!isset($_POST['register'])) { ?>
         <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
             <div id="regist">
-                <input class="textboxes" type="text" id="fname" name="fname" placeholder="Enter First Name" maxlength="10"><br><br>
-                <input class="textboxes" type="text" id="lname" name="lname" placeholder="Enter Last Name" maxlength="15"><br><br>
-                <input class="textboxes" type="text" id="username" name="username" placeholder="Enter Username" maxlength="12"><br><br>
-                <input class="textboxes" type="password" id="password" name="password" placeholder="Enter Password" maxlength="10"><br><br>
-                <input class="textboxes" type="password" id="passwordRep" name="passwordRep" placeholder="Repeat Password" maxlength="10"><br><br>
+                <input class="textboxes" type="text" id="fname" name="fname" placeholder="Enter First Name" maxlength="10" required><br><br>
+                <input class="textboxes" type="text" id="lname" name="lname" placeholder="Enter Last Name" maxlength="15" required><br><br>
+                <input class="textboxes" type="text" id="username" name="username" placeholder="Enter Username" maxlength="12" required><br><br>
+                <input class="textboxes" type="password" id="password" name="password" placeholder="Enter Password" maxlength="10" required><br><br>
+                <input class="textboxes" type="password" id="passwordRep" name="passwordRep" placeholder="Repeat Password" maxlength="10" required><br><br>
                 <input class="actionbttns" type="submit" name="register" value="Register"><br><br>
             </div>
         </form>

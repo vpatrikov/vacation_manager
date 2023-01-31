@@ -37,14 +37,9 @@
         }
         ?>
     </header>
-
-    <form method="post">
-        <div class="buttons">
-            <br>
-            <input class="actionbttns" type="submit" name="viewbttn" value="View Data" />
-            <input class="actionbttns" type="submit" name="editbttn" value="Edit Data" />
-        </div>
-    </form>
+    <?php 
+    $db = new PDO("sqlite:'../../Database.db'");
+    ?>
 </body>
 
 </html>

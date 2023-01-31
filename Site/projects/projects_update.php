@@ -22,10 +22,10 @@
     ?>
         <form id=login action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
             <input class="textboxes" style="display:none" type="number" name="id" value=<?php echo $ID; ?>>
-            <input class="textboxes" type="text" name="name" placeholder="Update Name"><br>
-            <input class="textboxes" type="text" name="description" placeholder="Update Description"><br>
-            <input class="textboxes" type="number" name="team" placeholder="Update Team"><br>
-            <br><input class="actionbttns" type="submit" name="submit" value="Update Record">
+            <input class="textboxes" type="text" name="name" placeholder="Update Name" required><br>
+            <input class="textboxes" type="text" name="description" placeholder="Update Description" required><br>
+            <input class="textboxes" type="number" name="team" placeholder="Update Team" required><br>
+            <br><input class="actionbttns" type="submit" name="submit" value="Update Record" required>
         </form>
     <?php
     } else {

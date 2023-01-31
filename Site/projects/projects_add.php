@@ -19,11 +19,11 @@
     ?>
         <form id=login action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
             <div class="div_align">
-                <input class="textboxes" type="text" name="name" id="name" placeholder="Enter Name"><br><br>
+                <input class="textboxes" type="text" name="name" id="name" placeholder="Enter Name" required><br><br>
 
-                <input class="textboxes" type="text" name="description" id="description" placeholder="Enter Description"><br><br>
+                <input class="textboxes" type="text" name="description" id="description" placeholder="Enter Description" required><br><br>
 
-                <input class="textboxes" type="number" name="team" id="team" placeholder="Enter Team"><br><br>
+                <input class="textboxes" type="number" name="team" id="team" placeholder="Enter Team" required><br><br>
 
                 <input class="actionbttns" type="submit" name="add" value="Add Data">
             </div>
