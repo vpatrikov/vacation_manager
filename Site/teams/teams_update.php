@@ -12,7 +12,6 @@
 
 <body>
     <?php
-    $pdo = new PDO("sqlite:../../Database.db");
 
     @$ID = $_REQUEST['id'];
 
