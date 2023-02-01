@@ -22,9 +22,9 @@
             <input class="textboxes" type="text" onfocus="(this.type = 'date')" placeholder="Enter Until When" name="until" required><br>
             <input class="textboxes" type="text" onfocus="(this.type = 'date')" placeholder="Date Of Request" name="dor" required><br><br>
             <label for="halfday">Halfday:</label>
-            <input type="checkbox" name="halfday" checked="true">
+            <input type="checkbox" name="halfday">
             <label for="approved">Approved:</label>
-            <input type="checkbox" name="approved" checked="true"><br>
+            <input type="checkbox" name="approved"><br>
             <input class="textboxes" type="text" placeholder="Declarator" name="declarator" required><br><br>
             <input class="actionbttns" type="submit" name="submit" value="Update Record">
         </form>
@@ -35,6 +35,9 @@
 
             $approved = "false";
             $halfday = "false";
+            $from = date("d.m.Y", strtotime($_POST['from']));
+            $until = date("d.m.Y", strtotime($_POST['until']));
+            $dor = date("d.m.Y", strtotime($_POST['dor']));
 
             if (isset($_POST['approved'])) {
                 $approved = "true";
@@ -45,10 +48,11 @@
 
             //$db->exec('BEGIN IMMEDIATE');
 
-            $sql = "UPDATE Vacations SET \"from\" = '$_POST[from]', \"until\" = '$_POST[until]', 
-           \"dor\" = '$_POST[dor]', \"halfday\" = '$halfday', \"approved\" = '$approved',
+            $sql = "UPDATE Vacations SET \"from\" = '$from', \"until\" = '$until', 
+           \"dor\" = '$dor', \"halfday\" = '$halfday', \"approved\" = '$approved',
            \"declarator\" = '$_POST[declarator]' WHERE \"id\" = '$_POST[id]'";
 
+            //$success=true;
             $success = $db->exec($sql);
 
 
