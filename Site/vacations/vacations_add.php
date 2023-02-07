@@ -22,9 +22,7 @@
                 <input class="textboxes" type="text" onfocus="(this.type='date')" name="until" placeholder="Date Until" required><br>
                 <input class="textboxes" type="text" onfocus="(this.type='date')" name="dor" placeholder="Date Of Request" required><br><br>
                 <label for="halfday">Halfday:</label>
-                <input type="checkbox" name="halfday">
-                <label for="approved">Approved:</label>
-                <input type="checkbox" name="approved"><br>
+                <input type="checkbox" name="halfday"><br>
                 <input class="textboxes" type="text" name="declarator" placeholder="Declarator" required><br><br>
                 <input type="submit" class="actionbttns" name="add" value="Add Data">
             </div>
@@ -34,21 +32,17 @@
         try {
             $db = new PDO("sqlite:../../Database.db");
 
-            $approved = "false";
             $halfday = "false";
             $from = date("d.m.Y", strtotime($_POST['from']));
             $until = date("d.m.Y", strtotime($_POST['until']));
             $dor = date("d.m.Y", strtotime($_POST['dor']));
 
-            if (isset($_POST['approved'])) {
-                $approved = "true";
-            }
             if (isset($_POST['halfday'])) {
                 $halfday = "true";
             }
 
             $sql = "INSERT INTO Vacations (id, 'from', until, dor, halfday, approved, declarator) 
-            VALUES (NULL, \"$from\", \"$until\", \"$dor\", \"$halfday\", \"$approved\", '$_POST[declarator]')";
+            VALUES (NULL, \"$from\", \"$until\", \"$dor\", \"$halfday\", 'false', '$_POST[declarator]')";
 
             $success = $db->exec($sql);
             if ($success) {

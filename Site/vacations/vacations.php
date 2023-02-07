@@ -9,45 +9,16 @@
     <link rel="icon" type="image/x-icon" href="../../favicon.ico">
     <title>Vacation Manager</title>
 </head>
-
-<body>
-    <header>
-        <h1>Vacations</h1>
-        <?php
-        if(!isset($_POST['addbttn'])){
-        
-        
-        session_start();
-        if ($_SESSION['role'] == 'CEO') {
+<?php
+    function print_data($sql_query){
         ?>
-        <nav>
-            <a href="../index.php">Home</a>
-            <a href="../teams/teams.php">Teams</a>
-            <a href="../projects/projects.php">Projects</a>
-            <a href="../vacations/vacations.php">Vacations</a>
-            <a href="../users/users.php">Users</a>
-        </nav>
-        <?php
-        }else{
-            ?>
-            <nav>
-            <a href="../index.php">Home</a>
-            <a href="../teams/teams.php">Teams</a>
-            <a href="../projects/projects.php">Projects</a>
-            <a href="../vacations/vacations.php">Vacations</a>
-        </nav>
-        <?php
-        }
-        ?>
-    </header>
-    <div class="div-align scrollabe">
+        <div class="div-align scrollabe">
         <?php
         $db = new PDO("sqlite:../../Database.db");
 
-        $statement = $db->query("SELECT * FROM Vacations");
+        $statement = $db->query($sql_query);
         $vacations = $statement->fetchAll(PDO::FETCH_ASSOC);
-        ?>
-        <?php
+        
         echo "<br><table border = 1>";
 
         echo "
@@ -57,7 +28,7 @@
                 <td><b>Until<b></td>
                 <td><b>Date Of Request<b></td>
                 <td><b>Halfday<b></td>
-                <td><b>Aprooved<b></td>
+                <td><b>Approved<b></td>
                 <td><b>Declarator<b></td>
                 <td><b>Edit<b></td>
                 <td><b>Delete<b></td>
@@ -80,14 +51,54 @@
         }
 
         echo "</table>";
-    }else{
-        header("Location: vacations_add.php");
     }
         ?>
     </div>
+<body>
+    <header>
+        <h1>Vacations</h1>
+        <?php
+        if(!isset($_POST['addbttn'])){
+            
+        session_start();
+    if(!isset($_POST['checkbttn'])){
+        if ($_SESSION['role'] == 'CEO') {
+        ?>
+        <nav>
+            <a href="../index.php">Home</a>
+            <a href="../teams/teams.php">Teams</a>
+            <a href="../projects/projects.php">Projects</a>
+            <a href="../vacations/vacations.php">Vacations</a>
+            <a href="../users/users.php">Users</a>
+        </nav>
+        <?php
+        }else{
+            ?>
+            <nav>
+            <a href="../index.php">Home</a>
+            <a href="../teams/teams.php">Teams</a>
+            <a href="../projects/projects.php">Projects</a>
+            <a href="../vacations/vacations.php">Vacations</a>
+        </nav>
+        <?php 
+    } 
+    ?>
+    </header>
+    <?php
+    print_data("SELECT * FROM Vacations WHERE approved='true'");
+    ?>
+    <?php
+    } else {
+        header("Location: vacations_approve.php");
+    }
+    }else {
+        header("Location: vacations_add.php");
+    }
+    ?>
     <form class="buttons" method="post">
                 <br>
                 <input class="actionbttns" type="submit" name="addbttn" value="Add Data">
+                <input class="actionbttns" type="submit" name="checkbttn" value="Check Requests">
         </form>
 </body>
 
