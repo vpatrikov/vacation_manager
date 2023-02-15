@@ -141,4 +141,23 @@ footer {
 .scrollable{
 overflow: auto;
 }
+<<<<<<< Updated upstream
   
+=======
+
+.textboxes_filter {
+    border-radius: 2px;
+    border: 1px solid #CCC;
+    padding: 10px;
+    color: #333;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.invalid{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    font-size: 35px;
+}
+>>>>>>> Stashed changes
