@@ -15,8 +15,9 @@ include "check.php";
 
 <body>
     <?php
+    @session_start();
     if (isset($_SESSION['logged_in'])) {
-        if (isset($_SESSION['role']) && $_SESSION['role'] == 'CEO') {
+        if ($_SESSION['role'] == 'CEO') {
     ?>
             <header>
                 <h1>Vacation Manager</h1>
@@ -29,7 +30,8 @@ include "check.php";
                 </nav>
             </header>
 
-            <p>Welcome, <?php echo $_SESSION['fname']; echo " " . $_SESSION['lname']; ?>! Role: <?php echo $_SESSION['role']; ?></p>
+            <p>Welcome, <?php echo $_SESSION['fname'];
+                        echo " " . $_SESSION['lname']; ?>! Role: <?php echo $_SESSION['role']; ?></p>
 
             <?php if (!isset($_POST['log_out'])) { ?>
                 <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
@@ -53,7 +55,12 @@ include "check.php";
                     <a href="index.php">Home</a>
                     <a href="teams/teams.php">Teams</a>
                     <a href="projects/projects.php">Projects</a>
-                    <a href="vacations/vacations.php">Vacations</a>
+                    <?php
+                    if ($_SESSION['role'] != "Team Lead") { ?>
+                        <a href="vacations/vacations_add.php">Request Vacation</a>
+                    <?php } else { ?>
+                        <a href="vacations/vacations.php">Vacations</a>
+                    <?php } ?>
                 </nav>
             </header>
 

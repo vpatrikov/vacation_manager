@@ -78,7 +78,12 @@
             <a href="../index.php">Home</a>
             <a href="../teams/teams.php">Teams</a>
             <a href="../projects/projects.php">Projects</a>
-            <a href="../vacations/vacations.php">Vacations</a>
+            <?php
+                if($_SESSION['role'] != "CEO" && $_SESSION['role'] != "Team Lead"){?>
+                <a href="../vacations/vacations_add.php">Request Vacation</a>
+                <?php } else { ?>
+                <a href="../vacations/vacations.php">Vacations</a>
+                <?php }?>
         </nav>
         <?php 
     } 

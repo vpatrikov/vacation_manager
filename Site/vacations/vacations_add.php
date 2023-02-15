@@ -11,9 +11,11 @@
 
 <body>
     <header>
-        <h1>Add data to Vacations</h1>
+        <h1>Request Vacation</h1>
     </header>
-    <?php if (!isset($_POST['add'])) {
+    <?php
+    session_start(); 
+    if (!isset($_POST['add'])) {
     ?>
         <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
 
@@ -46,7 +48,13 @@
 
             $success = $db->exec($sql);
             if ($success) {
-               header("Location: vacations.php");
+                if($_SESSION['role'] == "CEO" || $_SESSION['role'] == "Team Lead")
+                {
+                    header("Location: vacations.php");
+                } else {
+                    header("Location: ../index.php");
+                    echo "Vacation successfully requested";
+                }
             } else {
                 echo "There was an error.";
             }
