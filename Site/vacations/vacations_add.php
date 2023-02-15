@@ -69,7 +69,10 @@
 
     <footer>
         <input class=actionbttns type="submit" onclick="location.href='../index.php'" value="Return Home">
+        <?php if($_SESSION['role'] == "CEO" || $_SESSION['role'] == "Team Lead"){
+        ?>
         <input class=actionbttns type="submit" onclick="location.href='vacations.php'" value="Vacations Page">
+        <?php }?>
     </footer>
 </body>
 </html>
