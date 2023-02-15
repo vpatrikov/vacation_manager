@@ -141,9 +141,6 @@ footer {
 .scrollable{
 overflow: auto;
 }
-<<<<<<< Updated upstream
-  
-=======
 
 .textboxes_filter {
     border-radius: 2px;
@@ -160,4 +157,3 @@ overflow: auto;
     justify-content: center;
     font-size: 35px;
 }
->>>>>>> Stashed changes

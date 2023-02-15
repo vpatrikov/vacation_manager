@@ -55,10 +55,6 @@
                 }
 
                 echo "</table>";
-                ?>
-                </div>
-                echo "</table>";
-            <?php
             }
         }
 
@@ -111,7 +107,6 @@
         } else if ($lname) {
             $query .= " WHERE lname = '$lname'";
         } else if ($username) {
-
             $query .= " WHERE username = '$username'";
         } else if ($role) {
             $query .= " WHERE role = '$role'";
@@ -120,7 +115,6 @@
         print_data($query);
     }
     ?>
-    >>>>>>> Stashed changes
 </body>
 
 </html>
