@@ -15,43 +15,8 @@
         <h1>Users</h1>
         <?php
         session_start();
-<<<<<<< Updated upstream
-        if ($_SESSION['role'] == 'CEO') {
-        ?>
-            <nav>
-                <a href="../index.php">Home</a>
-                <a href="../teams/teams.php">Teams</a>
-                <a href="../projects/projects.php">Projects</a>
-                <a href="../vacations/vacations.php">Vacations</a>
-                <a href="../users/users.php">Users</a>
-            </nav>
-        <?php
-        } else {
-        ?>
-            <nav>
-                <a href="../index.php">Home</a>
-                <a href="../teams/teams.php">Teams</a>
-                <a href="../projects/projects.php">Projects</a>
-                <a href="../vacations/vacations.php">Vacations</a>
-            </nav>
-        <?php
-        }
-        ?>
-    </header>
-    <div class="div-align scrollabe">
-        <?php
-        $db = new PDO("sqlite:../../Database.db");
-
-        $statement = $db->query("SELECT * FROM Users");
-        $users = $statement->fetchAll(PDO::FETCH_ASSOC);
-        ?>
-        <?php
-        echo "<br><table border = 1>";
-=======
-
         function print_data($sql_query)
         {
->>>>>>> Stashed changes
 
             $db = new PDO("sqlite:../../Database.db");
             $statement = $db->query($sql_query);
@@ -85,16 +50,15 @@
                     echo "<td>" . $data['role'] . "</td>";
                     echo "<td>" . $data['team'] . "</td>";
                     echo "<td align='center'>" ?> <a class='a_links' href="users_delete.php?id=<?php echo $data['id']; ?>">Delete</a></td>
-            <?php
+                <?php
                     echo "</tr>";
                 }
 
-<<<<<<< Updated upstream
-        echo "</table>";
-        ?>
-    </div>
-=======
                 echo "</table>";
+                ?>
+                </div>
+                echo "</table>";
+            <?php
             }
         }
 
@@ -142,7 +106,7 @@
 
         $query = "SELECT * FROM Users";
 
-       if ($fname) {
+        if ($fname) {
             $query .= " WHERE fname = '$fname'";
         } else if ($lname) {
             $query .= " WHERE lname = '$lname'";
@@ -156,7 +120,7 @@
         print_data($query);
     }
     ?>
->>>>>>> Stashed changes
+    >>>>>>> Stashed changes
 </body>
 
 </html>
