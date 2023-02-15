@@ -23,7 +23,7 @@
             $users = $statement->fetchAll(PDO::FETCH_ASSOC);
 
             if (count($users) == 0) {
-                echo "<p class='invalid'>Invalid input</p>";
+                echo "<p class='text'>Invalid input</p>";
                 return;
             } else {
                 echo "<br><table border = 1>";

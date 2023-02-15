@@ -30,7 +30,7 @@ include "check.php";
                 </nav>
             </header>
 
-            <p>Welcome, <?php echo $_SESSION['fname'];
+            <p class="text">Welcome, <?php echo $_SESSION['fname'];
                         echo " " . $_SESSION['lname']; ?>! Role: <?php echo $_SESSION['role']; ?></p>
 
             <?php if (!isset($_POST['log_out'])) { ?>
