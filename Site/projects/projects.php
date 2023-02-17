@@ -31,14 +31,14 @@
             <nav>
                 <a href="../index.php">Home</a>
                 <a href="../teams/teams.php">Teams</a>
-                <a href="../projects/projects.php">Projects</a>
+                <a href="projects.php">Projects</a>
                 <?php
                 if($_SESSION['role'] != "CEO" && $_SESSION['role'] != "Team Lead"){?>
                 <a href="../vacations/vacations_add.php">Request Vacation</a>
                 <?php } else { ?>
                 <a href="../vacations/vacations.php">Vacations</a>
                 <?php }?>
-                <a href="/users/users.php">Team Members</a>
+                <a href="../users/users.php">Team Members</a>
             </nav>
         <?php
         }
