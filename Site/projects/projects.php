@@ -38,6 +38,7 @@
                 <?php } else { ?>
                 <a href="../vacations/vacations.php">Vacations</a>
                 <?php }?>
+                <a href="/users/users.php">Team Members</a>
             </nav>
         <?php
         }

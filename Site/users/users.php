@@ -11,10 +11,16 @@
 </head>
 
 <body>
+    <?php
+    session_start();
+    ?>
     <header>
-        <h1>Users</h1>
-        <?php
-        session_start();
+        <?php if ($_SESSION['role'] == 'CEO') { ?>
+            <h1>Users</h1>
+        <?php } else {
+        ?><h1>Team Members</h1>
+            <?php
+        }
         function print_data($sql_query)
         {
 
@@ -27,8 +33,8 @@
                 return;
             } else {
                 echo "<br><table border = 1>";
-
-                echo "
+                if ($_SESSION['role'] == 'CEO') {
+                    echo "
             <tr>
                 <td><b>ID<b></td>
                 <td><b>Username<b></td>
@@ -39,6 +45,18 @@
                 <td><b>Team<b></td>
                 <td><b>Delete<b></td>
             </tr>";
+                } else {
+                    echo "
+            <tr>
+                <td><b>ID<b></td>
+                <td><b>Username<b></td>
+                <td><b>Password<b></td>
+                <td><b>First Name<b></td>
+                <td><b>Last Name<b></td>
+                <td><b>Role<b></td>
+                <td><b>Team<b></td>
+            </tr>";
+                }
 
                 foreach ($users as $row => $data) {
                     echo "<tr>";
@@ -49,21 +67,24 @@
                     echo "<td>" . $data['lname'] . "</td>";
                     echo "<td>" . $data['role'] . "</td>";
                     echo "<td>" . $data['team'] . "</td>";
-                    echo "<td align='center'>" ?> <a class='a_links' href="users_delete.php?id=<?php echo $data['id']; ?>">Delete</a></td>
-                <?php
-                    echo "</tr>";
-                }
-
-                echo "</table>";
-            }
-        }
-            ?>
+                    if ($_SESSION['role'] == 'CEO') {
+                        echo "<td align='center'>" ?> <a class='a_links' href="users_delete.php?id=<?php echo $data['id']; ?>">Delete</a></td><?php
+                    }
+                         echo "</tr>";
+                    }
+                        echo "</table>";
+                    }
+                }?>
             <nav>
                 <a href="../index.php">Home</a>
                 <a href="../teams/teams.php">Teams</a>
                 <a href="../projects/projects.php">Projects</a>
                 <a href="../vacations/vacations.php">Vacations</a>
-                <a href="../users/users.php">Users</a>
+                <?php if ($_SESSION['role'] != 'CEO') { ?>
+                    <a href="users.php">Team Members</a>
+                <?php } else { ?>
+                    <a href="users.php">Users</a>
+            <?php }?>
             </nav>
     </header>
     <form class="div_align scrollabe" method="post">
@@ -78,8 +99,13 @@
         <input class="actionbttns" type="submit" name="filter" value="Filter">
     </form>
     <?php
+    $team = $_SESSION['team'];
     if (!isset($_POST['filter'])) {
-        print_data("SELECT * FROM Users");
+        if ($_SESSION['role'] == 'CEO') {
+            print_data("SELECT * FROM Users");
+        } else {
+            print_data("SELECT * FROM Users WHERE team = '$team'");
+        }
     } else {
         $username = $_POST['filter_username'];
         $fname = $_POST["filter_fname"];
