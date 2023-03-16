@@ -50,7 +50,7 @@
 
     <footer>
         <input onclick="location.href='../index.php'" class="actionbttns" value="Home">
-        <input onclick="location.href='projects.php'" class="actionbttns" value="Projects page">
+        <input onclick="location.href='teams.php'" class="actionbttns" value="Teams page">
     </footer>
 </body>
 
