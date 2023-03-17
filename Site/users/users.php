@@ -44,6 +44,7 @@
                 <td><b>Role<b></td>
                 <td><b>Team<b></td>
                 <td><b>Delete<b></td>
+                <td><b>Edit<b></td>
             </tr>";
                 } else {
                     echo "
@@ -68,6 +69,7 @@
                     echo "<td>" . $data['role'] . "</td>";
                     echo "<td>" . $data['team'] . "</td>";
                     if ($_SESSION['role'] == 'CEO') {
+                        echo "<td align='center'>" ?> <a class='a_links' href="users_update.php?id=<?php echo $data['id']; ?>">Edit</a></td><?php
                         echo "<td align='center'>" ?> <a class='a_links' href="users_delete.php?id=<?php echo $data['id']; ?>">Delete</a></td><?php
                     }
                          echo "</tr>";
