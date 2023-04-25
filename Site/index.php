@@ -89,6 +89,7 @@ include "check.php";
                 <a href="login/login.php">Login</a>
             </nav>
         </header>
+        <p class="text">Welcome! Please login or register.</p>
     <?php
     }
     ?>

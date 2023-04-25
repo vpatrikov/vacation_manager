@@ -51,7 +51,6 @@
             <tr>
                 <td><b>ID<b></td>
                 <td><b>Username<b></td>
-                <td><b>Password<b></td>
                 <td><b>First Name<b></td>
                 <td><b>Last Name<b></td>
                 <td><b>Role<b></td>
@@ -63,7 +62,6 @@
                     echo "<tr>";
                     echo "<td>" . $data['id'] . "." . "</td>";
                     echo "<td>" . $data['username'] . "</td>";
-                    echo "<td>" . $data['pass'] . "</td>";
                     echo "<td>" . $data['fname'] . "</td>";
                     echo "<td>" . $data['lname'] . "</td>";
                     echo "<td>" . $data['role'] . "</td>";
