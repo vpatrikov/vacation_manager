@@ -14,35 +14,18 @@
     <header>
 
         <h1>Projects</h1>
-        <?php
-        session_start();
-        if ($_SESSION['role'] == 'CEO') {
-        ?>
-            <nav>
+        <?php session_start();?>
+        <nav>
                 <a href="../index.php">Home</a>
                 <a href="../teams/teams.php">Teams</a>
                 <a href="../projects/projects.php">Projects</a>
                 <a href="../vacations/vacations.php">Vacations</a>
+                <?php if ($_SESSION['role'] == 'CEO') { ?>
                 <a href="../users/users.php">Users</a>
-            </nav>
-        <?php
-        } else {
-        ?>
-            <nav>
-                <a href="../index.php">Home</a>
-                <a href="../teams/teams.php">Teams</a>
-                <a href="projects.php">Projects</a>
-                <?php
-                if($_SESSION['role'] != "CEO" && $_SESSION['role'] != "Team Lead"){?>
-                <a href="../vacations/vacations_add.php">Request Vacation</a>
                 <?php } else { ?>
-                <a href="../vacations/vacations.php">Vacations</a>
-                <?php }?>
                 <a href="../users/users.php">Team Members</a>
+                <?php } ?>
             </nav>
-        <?php
-        }
-        ?>
     </header>
 
     <div class="div_align scrollable">

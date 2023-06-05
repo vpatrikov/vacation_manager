@@ -10,15 +10,16 @@
     <title>Vacation Manager</title>
 </head>
 <?php
-    function print_data($sql_query){
-        ?>
-        <div class="div-align scrollabe">
+function print_data($sql_query)
+{
+?>
+    <div class="div-align scrollabe">
         <?php
         $db = new PDO("sqlite:../../Database.db");
 
         $statement = $db->query($sql_query);
         $vacations = $statement->fetchAll(PDO::FETCH_ASSOC);
-        
+
         echo "<br><table border = 1>";
 
         echo "
@@ -30,6 +31,7 @@
                 <td><b>Halfday<b></td>
                 <td><b>Approved<b></td>
                 <td><b>Declarator<b></td>
+                <td><b>Team<b></td>
                 <td><b>Edit<b></td>
                 <td><b>Delete<b></td>
 
@@ -44,68 +46,65 @@
             echo "<td>" . $data['halfday'] . "</td>";
             echo "<td>" . $data['approved'] . "</td>";
             echo "<td>" . $data['declarator'] . "</td>";
-            echo "<td align='center'>" ?> <a class='a_links' href="vacations_update.php?id=<?php echo $data['id'];?>">Edit</a></td><?php
-            echo "<td align='center'>" ?> <a class='a_links' href="vacations_delete.php?id=<?php echo $data['id'];?>">Delete</a></td>
-        <?php
+            echo "<td>" . $data['team'] . "</td>";
+            echo "<td align='center'>" ?> <a class='a_links' href="vacations_update.php?id=<?php echo $data['id']; ?>">Edit</a></td><?php
+            echo "<td align='center'>" ?> <a class='a_links' href="vacations_delete.php?id=<?php echo $data['id']; ?>">Delete</a></td>
+    <?php
             echo "</tr>";
         }
 
         echo "</table>";
     }
-        ?>
+    ?>
     </div>
-<body>
-    <header>
-        <h1>Vacations</h1>
-        <?php
-        if(!isset($_POST['addbttn'])){
-            
-        session_start();
-    if(!isset($_POST['checkbttn'])){
-        if ($_SESSION['role'] == 'CEO') {
-        ?>
-        <nav>
-            <a href="../index.php">Home</a>
-            <a href="../teams/teams.php">Teams</a>
-            <a href="../projects/projects.php">Projects</a>
-            <a href="vacations.php">Vacations</a>
-            <a href="../users/users.php">Users</a>
-        </nav>
-        <?php
-        }else{
-            ?>
-            <nav>
-            <a href="../index.php">Home</a>
-            <a href="../teams/teams.php">Teams</a>
-            <a href="../projects/projects.php">Projects</a>
+
+    <body>
+        <header>
+            <h1>Vacations</h1>
             <?php
-                if($_SESSION['role'] != "CEO" && $_SESSION['role'] != "Team Lead"){?>
-                <a href="vacations_add.php">Request Vacation</a>
-                <?php } else { ?>
-                <a href="vacations.php">Vacations</a>
-                <?php }?>
-                <a href="../users/users.php">Team Members</a>
-        </nav>
-        <?php 
-    } 
-    ?>
-    </header>
-    <?php
-    print_data("SELECT * FROM Vacations WHERE approved='true'");
-    ?>
-    <?php
-    } else {
-        header("Location: vacations_approve.php");
-    }
-    }else {
-        header("Location: vacations_add.php");
-    }
-    ?>
-    <form class="buttons" method="post">
-                <br>
-                <input class="actionbttns" type="submit" name="addbttn" value="Add Data">
-                <input class="actionbttns" type="submit" name="checkbttn" value="Check Requests">
-        </form>
-</body>
+            if (!isset($_POST['addbttn'])) {
+
+                session_start();
+                if (!isset($_POST['checkbttn'])) {
+            ?>
+                        <nav>
+                            <a href="../index.php">Home</a>
+                            <a href="../teams/teams.php">Teams</a>
+                            <a href="../projects/projects.php">Projects</a>
+                            <a href="vacations.php">Vacations</a>
+                            <?php if ($_SESSION['role'] == 'CEO') { ?>
+                            <a href="../users/users.php">Users</a>
+                            <?php } else { ?>
+                            <a href="../users/users.php">Team Members</a>
+                            <?php } ?>
+                        </nav>
+        </header>
+        <?php
+                    $team = $_SESSION['team'];
+                    $user = $_SESSION['username'];
+                    if ($_SESSION['role'] == "CEO") {
+                        print_data("SELECT * FROM Vacations WHERE approved='true'");
+                    } else if ($_SESSION['role'] == "Team Lead") {
+                        print_data("SELECT * FROM Vacations WHERE approved='true' AND team='$team'");
+                    } else {
+                        print_data("SELECT * FROM Vacations WHERE declarator='$user'");
+                    }
+        ?>
+<?php
+                } else {
+                    header("Location: vacations_approve.php");
+                }
+            } else {
+                header("Location: vacations_add.php");
+            }
+?>
+<form class="buttons" method="post">
+    <br>
+    <input class="actionbttns" type="submit" name="addbttn" value="Add Data">
+    <?php if ($_SESSION['role'] == "CEO" || $_SESSION['role'] == "Team Lead") { ?>
+    <input class="actionbttns" type="submit" name="checkbttn" value="Check Requests">
+    <?php }?>
+</form>
+    </body>
 
 </html>

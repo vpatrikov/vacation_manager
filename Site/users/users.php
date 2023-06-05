@@ -59,18 +59,30 @@
                 }
 
                 foreach ($users as $row => $data) {
+                    if ($_SESSION['role'] == 'CEO') {
                     echo "<tr>";
                     echo "<td>" . $data['id'] . "." . "</td>";
                     echo "<td>" . $data['username'] . "</td>";
+                    echo "<td>" . $data['pass'] . "</td>";
                     echo "<td>" . $data['fname'] . "</td>";
                     echo "<td>" . $data['lname'] . "</td>";
                     echo "<td>" . $data['role'] . "</td>";
                     echo "<td>" . $data['team'] . "</td>";
-                    if ($_SESSION['role'] == 'CEO') {
+                    
                         echo "<td align='center'>" ?> <a class='a_links' href="users_update.php?id=<?php echo $data['id']; ?>">Edit</a></td><?php
                         echo "<td align='center'>" ?> <a class='a_links' href="users_delete.php?id=<?php echo $data['id']; ?>">Delete</a></td><?php
-                    }
                          echo "</tr>";
+                    } else {
+                            echo "<tr>";
+                            echo "<td>" . $data['id'] . "." . "</td>";
+                            echo "<td>" . $data['username'] . "</td>";
+                            echo "<td>" . $data['fname'] . "</td>";
+                            echo "<td>" . $data['lname'] . "</td>";
+                            echo "<td>" . $data['role'] . "</td>";
+                            echo "<td>" . $data['team'] . "</td>";
+
+                    }
+
                     }
                         echo "</table>";
                     }

@@ -13,35 +13,18 @@
 <body>
     <header>
         <h1>Teams</h1>
-        <?php
-        session_start();
-        if ($_SESSION['role'] == 'CEO') {
-        ?>
+        <?php session_start();?>
             <nav>
                 <a href="../index.php">Home</a>
                 <a href="../teams/teams.php">Teams</a>
                 <a href="../projects/projects.php">Projects</a>
                 <a href="../vacations/vacations.php">Vacations</a>
+                <?php if ($_SESSION['role'] == 'CEO') { ?>
                 <a href="../users/users.php">Users</a>
-            </nav>
-        <?php
-        } else {
-        ?>
-            <nav>
-                <a href="../index.php">Home</a>
-                <a href="teams.php">Teams</a>
-                <a href="../projects/projects.php">Projects</a>
-                <?php
-                if($_SESSION['role'] != "CEO" && $_SESSION['role'] != "Team Lead"){?>
-                <a href="../vacations/vacations_add.php">Request Vacation</a>
                 <?php } else { ?>
-                <a href="../vacations/vacations.php">Vacations</a>
-                <?php }?>
                 <a href="../users/users.php">Team Members</a>
+                <?php } ?>
             </nav>
-        <?php
-        }
-        ?>
     </header>
 
     <div class="div_align scrollable">
@@ -55,6 +38,7 @@
 
                 echo "<br><table border = 1>";
 
+            if($_SESSION['role'] == "CEO") {
                 echo "
             <tr>
                 <td><b>ID<b></td>
@@ -63,14 +47,24 @@
                 <td><b>Edit<b></td>
                 <td><b>Delete<b></td>
             </tr>";
+            } else {
+                echo "
+                <tr>
+                    <td><b>ID<b></td>
+                    <td><b>Name<b></td>
+                    <td><b>Project<b></td>
+                </tr>";
+            }
 
                 foreach ($teams as $row => $data) {
                     echo "<tr>";
                     echo "<td>" . $data['id'] . "." . "</td>";
                     echo "<td>" . $data['name'] . "</td>";
                     echo "<td>" . $data['project'] . "</td>";
+                if($_SESSION['role'] == "CEO") {
                     echo "<td align='center'>" ?> <a class='a_links' href="teams_update.php?id=<?php echo $data['id']; ?>">Edit</a></td> <?php
                     echo "<td align='center'>" ?> <a class='a_links' href="teams_delete.php?id=<?php echo $data['id']; ?>">Delete</a></td><?php
+                }
                     echo "</tr>";
                 }
                 echo "</table>";

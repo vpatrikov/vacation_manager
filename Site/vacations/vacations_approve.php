@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,18 +8,29 @@
     <title>Approve Requests</title>
     <link rel="stylesheet" href="../style.css">
 </head>
+
 <body>
     <header>
-       <h1>Approve Requests</h1>
+        <h1>Approve Requests</h1>
     </header>
     <?php
     session_start();
     $db = new PDO('sqlite:../../Database.db');
 
-    $statement = $db->query("SELECT * FROM Vacations WHERE approved='false'");
+    $sql_query;
+    $team = $_SESSION['team'];
+    if ($_SESSION['role'] == "CEO") {
+        $sql_query = "SELECT * FROM Vacations WHERE approved='false'";
+    } else {
+        $sql_query = "SELECT * FROM Vacations WHERE approved='false' AND team='$team'";
+    }
+    $statement = $db->query($sql_query);
     $vacations = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-    echo "<br><table border = 1>";
+    if (count($vacations) == 0) {
+        echo "<p class=text>There are no vacations to approve!</p>";
+    } else {
+        echo "<br><table border = 1>";
 
         echo "
             <tr>
@@ -42,17 +54,18 @@
             echo "<td>" . $data['halfday'] . "</td>";
             echo "<td>" . $data['approved'] . "</td>";
             echo "<td>" . $data['declarator'] . "</td>";
-            echo "<td align='center'>" ?> <a class='a_links' href="approve.php?id=<?php echo $data['id'];?>">Approve</a></td>
-        <?php
+            echo "<td align='center'>" ?> <a class='a_links' href="approve.php?id=<?php echo $data['id']; ?>">Approve</a></td>
+    <?php
             echo "</tr>";
         }
 
         echo "</table>";
-    
+    }
     ?>
     <footer>
-    <input class=actionbttns type="submit" onclick="location.href='../index.php'" value="Return Home">
+        <input class=actionbttns type="submit" onclick="location.href='../index.php'" value="Return Home">
         <input class=actionbttns type="submit" onclick="location.href='vacations.php'" value="Vacations Page">
     </footer>
 </body>
+
 </html>
