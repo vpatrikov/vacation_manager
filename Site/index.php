@@ -33,15 +33,12 @@ include "check.php";
                     
                 </nav>
             </header>
-
+            <form class=div_align action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
             <p class="text">Welcome, <?php echo $_SESSION['fname'];
                         echo " " . $_SESSION['lname']; ?>! Role: <?php echo $_SESSION['role']; ?></p>
 
             <?php if (!isset($_POST['log_out'])) { ?>
-                <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
-                    <footer>
                         <input class="actionbttns" type="submit" name="log_out" value="Log Out">
-                    </footer>
                 </form>
             <?php
             } else {
