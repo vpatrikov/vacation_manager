@@ -29,7 +29,7 @@
 
     if (!isset($_POST['submit'])) {?>
         <form id="login" action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
-            <input class="textboxes" type="text" id="username" name="username" placeholder="Enter Username" maxlength="10"><br><br>
+            <input class="textboxes" type="text" id="username" name="username" placeholder="Enter Username" maxlength="20"><br><br>
             <input class="textboxes" type="password" id="pass" name="pass" placeholder="Enter Password" maxlength="10"><br><br>
             <input class="actionbttns" type="submit" name="submit" id="submit" value="Log in"><br><br>
         </form>

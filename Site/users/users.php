@@ -8,9 +8,6 @@
     <title>Users</title>
     <link rel="stylesheet" href="../style.css">
     <link rel="icon" type="image/x-icon" href="../../favicon.ico">
-    <style>
-        
-    </style>
 </head>
 
 <body>
@@ -27,6 +24,11 @@
         <?php
         function print_data($statement)
         {
+            if (is_string($statement)) {
+                echo $statement;
+                return;
+            }
+
             $users = $statement->fetchAll(PDO::FETCH_ASSOC);
         
             if (count($users) == 0) {
@@ -62,6 +64,7 @@
                 foreach ($users as $row => $data) {
                     if ($_SESSION['role'] == 'CEO') {
                         echo "<tr>";
+
                         echo "<td>" . $data['id'] . "." . "</td>";
                         echo "<td>" . $data['username'] . "</td>";
                         echo "<td>" . $data['pass'] . "</td>";
@@ -72,15 +75,18 @@
         
                         echo "<td align='center'>" ?> <a class='a_links' href="users_update.php?id=<?php echo $data['id']; ?>">Edit</a></td><?php
                         echo "<td align='center'>" ?> <a class='a_links' href="users_delete.php?id=<?php echo $data['id']; ?>">Delete</a></td><?php
+                        
                         echo "</tr>";
                     } else {
                         echo "<tr>";
+
                         echo "<td>" . $data['id'] . "." . "</td>";
                         echo "<td>" . $data['username'] . "</td>";
                         echo "<td>" . $data['fname'] . "</td>";
                         echo "<td>" . $data['lname'] . "</td>";
                         echo "<td>" . $data['role'] . "</td>";
                         echo "<td>" . $data['team'] . "</td>";
+                        echo "</tr>";
         
                     }
                 }
@@ -112,7 +118,6 @@
     </form>
 
     <?php
-    // Helper function to generate pagination links
     function generatePaginationLinks($currentPage, $totalPages)
     {
         echo '<div class="pagination">';
@@ -121,13 +126,13 @@
         }
         echo '</div>';
     }
-
+    
     $team = $_SESSION['team'];
     if (!isset($_POST['filter'])) {
         $currentPage = isset($_GET['page']) ? $_GET['page'] : 1;
         $recordsPerPage = 10;
         $offset = ($currentPage - 1) * $recordsPerPage;
-
+    
         if ($_SESSION['role'] == 'CEO') {
             $query = "SELECT * FROM Users LIMIT :limit OFFSET :offset";
         } else {
@@ -141,10 +146,9 @@
             $statement->bindValue(':team', $team, PDO::PARAM_STR);
         }
         $statement->execute();
-
+    
         print_data($statement);
-
-        // Get total number of records
+    
         $totalCountQuery = ($_SESSION['role'] == 'CEO') ? "SELECT COUNT(*) FROM Users" : "SELECT COUNT(*) FROM Users WHERE team = :team";
         $totalCountStatement = $db->prepare($totalCountQuery);
         if ($_SESSION['role'] != 'CEO') {
@@ -152,21 +156,19 @@
         }
         $totalCountStatement->execute();
         $totalCount = $totalCountStatement->fetchColumn();
-
-        // Calculate total pages
+    
         $totalPages = ceil($totalCount / $recordsPerPage);
-
-        // Generate pagination links
+    
         generatePaginationLinks($currentPage, $totalPages);
     } else {
         $username = $_POST['filter_username'];
         $fname = $_POST["filter_fname"];
         $lname = $_POST["filter_lname"];
         $role = $_POST["filter_role"];
-
+    
         $query = "SELECT * FROM Users";
         $conditions = array();
-
+    
         if ($fname) {
             $conditions[] = "fname = '$fname'";
         }
@@ -179,14 +181,30 @@
         if ($role) {
             $conditions[] = "role = '$role'";
         }
-
+    
         if (!empty($conditions)) {
             $query .= " WHERE " . implode(" AND ", $conditions);
         }
-
-        print_data($query);
+        $db = new PDO("sqlite:../../Database.db");
+        $statement = $db->prepare($query);
+        $statement->execute();
+    
+        print_data($statement);
+    
+        $totalCountQuery = "SELECT COUNT(*) FROM Users";
+        if (!empty($conditions)) {
+            $totalCountQuery .= " WHERE " . implode(" AND ", $conditions);
+        }
+        $totalCountStatement = $db->prepare($totalCountQuery);
+        $totalCountStatement->execute();
+        $totalCount = $totalCountStatement->fetchColumn();
+    
+        $recordsPerPage = 10;
+        $totalPages = ($totalCount > 0) ? ceil($totalCount / $recordsPerPage) : 1;
+    
+        generatePaginationLinks(1, $totalPages);
     }
     ?>
+    
 </body>
-
 </html>
