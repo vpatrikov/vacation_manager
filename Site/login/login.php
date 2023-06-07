@@ -21,7 +21,7 @@
     function display_incorrect_pass(){
         ?>
                 <div class="div_align">
-                    <p style="font-size:25px">Incorrect username or password</p>
+                    <p class=text style="font-size:25px">Incorrect username or password</p>
                     <input onclick="location.href='../index.php'" class="actionbttns" type="submit" value="Home">
                 </div>
                 <?php
